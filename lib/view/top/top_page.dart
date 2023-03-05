@@ -6,6 +6,10 @@ import 'package:mycloud/config/styles.dart';
 import 'package:mycloud/provider/login_provider.dart';
 import 'package:mycloud/service/will_pop_call_back.dart';
 
+import 'dart:async';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
+
 double titleSize = 24.0;
 
 final userInputProvider = StateProvider<String>((ref) {
@@ -13,6 +17,28 @@ final userInputProvider = StateProvider<String>((ref) {
 });
 
 class TopPage extends ConsumerWidget {
+
+  Completer<GoogleMapController> _controller = Completer();
+
+  late LatLng _initialPosition;
+  late bool _loading;
+
+  void initState() {
+    super.initState();
+    _loading = true;
+    _getUserLocation();
+  }
+
+  void _getUserLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    setState(() {
+      _initialPosition = LatLng(position.latitude, position.longitude);
+      _loading = false;
+      print(position);
+    });
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return WillPopScope(
@@ -22,7 +48,32 @@ class TopPage extends ConsumerWidget {
         appBar: AppBar(
           title: Text('Serch'),
         ),
-        body: Container(),
+        body: _loading
+            ? CircularProgressIndicator()
+            : SafeArea(
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  target: _initialPosition,
+                  zoom: 14.4746,
+                ),
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+                myLocationEnabled: true,
+                myLocationButtonEnabled: true,
+                mapToolbarEnabled: false,
+                buildingsEnabled: true,
+                onTap: (LatLng latLang) {
+                  print('Clicked: $latLang');
+                },
+              ),
+              //buildFloatingSearchBar(),
+            ],
+          ),
+        ),
       ),
     );
   }
