@@ -16,8 +16,12 @@ final userInputProvider = StateProvider<String>((ref) {
   return '';
 });
 
-class TopPage extends ConsumerWidget {
+class TopPage extends StatefulWidget {
+  @override
+  _TopPageState createState() => _TopPageState();
+}
 
+class _TopPageState extends State<TopPage> {
   Completer<GoogleMapController> _controller = Completer();
 
   late LatLng _initialPosition;
@@ -40,7 +44,7 @@ class TopPage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return WillPopScope(
       //前のページに戻らせたくない時に使う
       onWillPop: willPopCallback,
@@ -51,29 +55,29 @@ class TopPage extends ConsumerWidget {
         body: _loading
             ? CircularProgressIndicator()
             : SafeArea(
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: _initialPosition,
-                  zoom: 14.4746,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    GoogleMap(
+                      initialCameraPosition: CameraPosition(
+                        target: _initialPosition,
+                        zoom: 14.4746,
+                      ),
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller.complete(controller);
+                      },
+                      myLocationEnabled: true,
+                      myLocationButtonEnabled: true,
+                      mapToolbarEnabled: false,
+                      buildingsEnabled: true,
+                      onTap: (LatLng latLang) {
+                        print('Clicked: $latLang');
+                      },
+                    ),
+                    //buildFloatingSearchBar(),
+                  ],
                 ),
-                onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
-                },
-                myLocationEnabled: true,
-                myLocationButtonEnabled: true,
-                mapToolbarEnabled: false,
-                buildingsEnabled: true,
-                onTap: (LatLng latLang) {
-                  print('Clicked: $latLang');
-                },
               ),
-              //buildFloatingSearchBar(),
-            ],
-          ),
-        ),
       ),
     );
   }
