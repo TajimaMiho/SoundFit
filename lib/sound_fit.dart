@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mycloud/config/styles.dart';
+import 'package:mycloud/top_page_route.dart';
 import 'package:mycloud/view/login.dart';
 import 'package:mycloud/view/top/top_page.dart';
 
@@ -50,7 +51,7 @@ class Top extends StatelessWidget {
           }
           if (snapshot.hasData) {
             //userがnullでない、つまりサインイン済み
-            return TopPage();
+            return TopPageRoute();
           }
           //userがnull、つまり未サインイン
           return LoginPage();

@@ -107,8 +107,8 @@ class LoginPage extends ConsumerWidget {
                                     ?.email) // ドキュメントID << usersコレクション内のドキュメント
                                 .set({
                               'name': name.isEmpty ? '名前未設定' : name,
-                              'point': 0,
-                              'used_point': 0,
+                              /*'point': 0,
+                              'used_point': 0,*/
                               'date': DateTime.now().toLocal().toIso8601String()
                             });
                             ref.read(loginProvider.notifier).changeMode(true);
