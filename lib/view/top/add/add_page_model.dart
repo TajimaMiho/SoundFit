@@ -11,10 +11,11 @@ class ShopListModel extends ChangeNotifier {
 
     final List<Shop> shops = snapshot.docs.map((DocumentSnapshot document) {
       Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+      final String id = document.id;
       final String title = data['title'];
       final String author = data['author'];
       final String? imgURL = data['imgURL'];
-      return Shop(title, author, imgURL);
+      return Shop(id, title, author, imgURL);
     }).toList();
 
     this.shops = shops;

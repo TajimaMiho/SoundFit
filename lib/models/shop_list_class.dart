@@ -1,5 +1,6 @@
 class Shop {
-  Shop(this.title, this.author, this.imgURL);
+  Shop(this.id, this.title, this.author, this.imgURL);
+  String id;
   String title;
   String author;
   String? imgURL;
