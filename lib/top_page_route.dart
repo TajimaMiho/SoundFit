@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycloud/config/styles.dart';
 import 'package:mycloud/models/user/user.dart';
 import 'package:mycloud/provider/login_provider.dart';
-import 'package:mycloud/view/top/add_page.dart';
+import 'package:mycloud/view/top/add/add_page.dart';
 import 'package:mycloud/view/top/my_page.dart';
 import 'package:mycloud/view/top/top_page.dart';
 
