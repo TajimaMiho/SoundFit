@@ -9,7 +9,7 @@ import 'package:mycloud/view/top/my_page.dart';
 import 'package:mycloud/view/top/top_page.dart';
 
 class TopPageRoute extends ConsumerWidget {
-  final _pageWidgets = [TopPage(), ConfigPage(), BookListPage()];
+  final _pageWidgets = [TopPage(), ConfigPage(), ShopListPage()];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

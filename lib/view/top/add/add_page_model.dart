@@ -2,21 +2,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mycloud/models/shop_list_class.dart';
 
-class BookListModel extends ChangeNotifier {
-  List<Book>? books;
+class ShopListModel extends ChangeNotifier {
+  List<Shop>? shops;
 
-  void fetchBookList() async {
+  void fetchShopList() async {
     final QuerySnapshot snapshot =
-        await FirebaseFirestore.instance.collection('books').get();
+        await FirebaseFirestore.instance.collection('shops').get();
 
-    final List<Book> books = snapshot.docs.map((DocumentSnapshot document) {
+    final List<Shop> shops = snapshot.docs.map((DocumentSnapshot document) {
       Map<String, dynamic> data = document.data() as Map<String, dynamic>;
       final String title = data['title'];
       final String author = data['author'];
-      return Book(title, author);
+      final String? imgURL = data['imgURL'];
+      return Shop(title, author, imgURL);
     }).toList();
 
-    this.books = books;
+    this.shops = shops;
     notifyListeners();
   }
 }

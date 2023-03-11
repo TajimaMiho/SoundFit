@@ -15,7 +15,7 @@ class AddShopModel extends ChangeNotifier {
     }
 
     // firestoreに追加
-    await FirebaseFirestore.instance.collection('books').add({
+    await FirebaseFirestore.instance.collection('shops').add({
       'title': title,
       'author': author,
     });

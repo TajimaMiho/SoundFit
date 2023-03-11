@@ -42,10 +42,12 @@ dependencies:
   google_fonts: ^3.0.1
   mobile_scanner: ^2.0.0
   flutter_svg: ^1.1.0
+  image_picker: ^0.8.7
 
   google_maps_flutter: ^2.0.6
   google_maps_flutter_web: ^0.4.0+6
   geolocator: ^7.2.0+1
+  firebase_storage: ^10.3.11
 
 
 dev_dependencies:
