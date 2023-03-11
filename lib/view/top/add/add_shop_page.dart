@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mycloud/service/providers_provider.dart';
 import 'package:mycloud/view/top/add/add_shop_model.dart';
 import 'package:provider/provider.dart';
+import 'dart:html' as html;
 
 /*class AddShopPage extends StatelessWidget {
   @override
@@ -105,7 +106,7 @@ class AddShopPage extends StatelessWidget {
                           width: 100,
                           height: 160,
                           child: model.imageFile != null
-                              ? Image.file(model.imageFile!)
+                              ? Image.memory(model.imageFile!)
                               : Container(
                                   color: Colors.grey,
                                 ),

@@ -57,7 +57,8 @@ class AddShopModel extends ChangeNotifier {
   }
 }*/
 
-import 'dart:io';
+//////////////////////////////////////
+/*import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -115,6 +116,70 @@ class AddShopModel extends ChangeNotifier {
 
     if (pickedFile != null) {
       imageFile = File(pickedFile.path);
+      notifyListeners();
+    }
+  }
+}
+*/
+import 'dart:html' as html;
+import 'dart:typed_data';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker_web/image_picker_web.dart';
+
+class AddShopModel extends ChangeNotifier {
+  String? title;
+  String? author;
+  bool isLoading = false;
+  Uint8List? imageFile;
+
+  final picker = ImagePickerWeb();
+  final doc = FirebaseFirestore.instance.collection('shops').doc();
+
+  void startLoading() {
+    isLoading = true;
+    notifyListeners();
+  }
+
+  void endLoading() {
+    isLoading = false;
+    notifyListeners();
+  }
+
+  Future addShop() async {
+    if (title == null || title == "") {
+      throw 'タイトルが入力されていません';
+    }
+
+    if (author == null || author!.isEmpty) {
+      throw '著者が入力されていません';
+    }
+
+    String? imgURL;
+    if (imageFile != null) {
+      // storageにアップロード
+      final ref = FirebaseStorage.instance.ref('shops/${doc.id}');
+      final task = ref.putBlob(imageFile!);
+      imgURL = await (await task).ref.getDownloadURL();
+    }
+
+    // firestoreに追加
+    await doc.set({
+      'title': title,
+      'author': author,
+      'imgURL': imgURL,
+    });
+  }
+
+  Future pickImage() async {
+    imageFile = await ImagePickerWeb.getImageAsBytes();
+
+    if (imageFile != null) {
+      var metadata = SettableMetadata(
+        contentType: "image/jpeg",
+      );
       notifyListeners();
     }
   }
