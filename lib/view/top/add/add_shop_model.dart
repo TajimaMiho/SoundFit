@@ -121,6 +121,7 @@ class AddShopModel extends ChangeNotifier {
   }
 }
 */
+
 import 'dart:html' as html;
 import 'dart:typed_data';
 
@@ -134,9 +135,9 @@ class AddShopModel extends ChangeNotifier {
   String? author;
   bool isLoading = false;
   Uint8List? imageFile;
+  var metadata;
 
   final picker = ImagePickerWeb();
-  final doc = FirebaseFirestore.instance.collection('shops').doc();
 
   void startLoading() {
     isLoading = true;
@@ -148,6 +149,17 @@ class AddShopModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /*Future uploadPic() async {
+    try {
+      String uploadName = 'image.png';
+      final storageRef =
+          FirebaseStorage.instance.ref().child('users/kkkkk/iiiiiiii');
+      final task = await storageRef.putData(imageFile!);
+    } catch (e) {
+      print(e);
+    }
+  }*/
+
   Future addShop() async {
     if (title == null || title == "") {
       throw 'タイトルが入力されていません';
@@ -157,12 +169,15 @@ class AddShopModel extends ChangeNotifier {
       throw '著者が入力されていません';
     }
 
+    final doc = FirebaseFirestore.instance.collection('shops').doc();
+
     String? imgURL;
     if (imageFile != null) {
       // storageにアップロード
-      final ref = FirebaseStorage.instance.ref('shops/${doc.id}');
-      final task = ref.putBlob(imageFile!);
-      imgURL = await (await task).ref.getDownloadURL();
+      final task = await FirebaseStorage.instance
+          .ref('shops/${doc.id}')
+          .putData(imageFile!, metadata);
+      imgURL = await task.ref.getDownloadURL();
     }
 
     // firestoreに追加
@@ -173,11 +188,20 @@ class AddShopModel extends ChangeNotifier {
     });
   }
 
+  /*Future pickImage() async {
+    final pickedFile = await ImagePickerWeb.getImageAsBytes();
+
+    if (pickedFile != null) {
+      imageFile = Uint8List(pickedFile.path);
+      notifyListeners();
+    }
+  }*/
+
   Future pickImage() async {
     imageFile = await ImagePickerWeb.getImageAsBytes();
 
     if (imageFile != null) {
-      var metadata = SettableMetadata(
+      metadata = SettableMetadata(
         contentType: "image/jpeg",
       );
       notifyListeners();

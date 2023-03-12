@@ -16,7 +16,7 @@ class ShopListPage extends StatelessWidget {
       create: (_) => ShopListModel()..fetchShopList(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('本一覧'),
+          title: Text('席一覧'),
         ),
         body: Center(
           child: Consumer<ShopListModel>(builder: (context, model, child) {
@@ -58,7 +58,7 @@ class ShopListPage extends StatelessWidget {
               if (added != null && added) {
                 final snackBar = SnackBar(
                   backgroundColor: Colors.green,
-                  content: Text('本を追加しました'),
+                  content: Text('席を追加しました'),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
               }

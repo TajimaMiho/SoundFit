@@ -91,7 +91,7 @@ class AddShopPage extends StatelessWidget {
       create: (_) => AddShopModel(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('本を追加'),
+          title: Text('お店を追加'),
         ),
         body: Center(
           child: Consumer<AddShopModel>(builder: (context, model, child) {
@@ -118,7 +118,7 @@ class AddShopPage extends StatelessWidget {
                       ),
                       TextField(
                         decoration: InputDecoration(
-                          hintText: '本のタイトル',
+                          hintText: 'お店の名前',
                         ),
                         onChanged: (text) {
                           model.title = text;
@@ -129,7 +129,7 @@ class AddShopPage extends StatelessWidget {
                       ),
                       TextField(
                         decoration: InputDecoration(
-                          hintText: '本の著者',
+                          hintText: '席の場所',
                         ),
                         onChanged: (text) {
                           model.author = text;
