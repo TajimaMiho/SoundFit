@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mycloud/models/account.dart';
 import 'package:mycloud/models/account_state.dart';
-import 'package:mycloud/models/shop_list_class.dart';
+import 'package:mycloud/models/shop.dart';
 import 'package:mycloud/provider/login_provider.dart';
 
 final accountProvider =
@@ -44,5 +44,19 @@ class FireAccountService {
         await FirebaseFirestore.instance.collection('users').doc(email).get();
 
     return const Account().copyWith(name: document['name']);
+  }
+}
+
+class FireShopService {
+  final _fireStore = FirebaseFirestore.instance;
+
+  Future<Shop> fetchShop(String id) async {
+    final document =
+        await FirebaseFirestore.instance.collection('shops').doc(id).get();
+
+    return const Shop().copyWith(
+        title: document['title'],
+        author: document['point'],
+        imgURL: document['imgURL']);
   }
 }

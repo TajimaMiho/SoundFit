@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mycloud/config/styles.dart';
 import 'package:mycloud/top_page_route.dart';
 import 'package:mycloud/view/login.dart';
+import 'package:mycloud/view/top/place/place_detail.dart';
 import 'package:mycloud/view/top/top_page.dart';
 
 class SoundFit extends StatelessWidget {
@@ -15,6 +16,7 @@ class SoundFit extends StatelessWidget {
         '/': (BuildContext context) => Top(),
         '/login': (BuildContext context) => Top(),
         '/top': (BuildContext context) => Top(),
+        '/place_detail': (BuildContext context) => PlaceDetail(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Title',
