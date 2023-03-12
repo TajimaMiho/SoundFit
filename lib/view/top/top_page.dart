@@ -50,7 +50,10 @@ class _TopPageState extends State<TopPage> {
       onWillPop: willPopCallback,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Serch'),
+          title: Text(
+            'Search',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         body: _loading
             ? CircularProgressIndicator()

@@ -16,7 +16,10 @@ class ShopListPage extends StatelessWidget {
       create: (_) => ShopListModel()..fetchShopList(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('席一覧'),
+          title: Text(
+            '席一覧',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         body: Center(
           child: Consumer<ShopListModel>(builder: (context, model, child) {

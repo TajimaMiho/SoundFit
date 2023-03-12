@@ -16,7 +16,10 @@ class ConfigPage extends ConsumerWidget {
     double shortestSide = size.shortestSide;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Account'),
+        title: Text(
+          'アカウント',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Container(
         color: Styles.primaryColor700,
