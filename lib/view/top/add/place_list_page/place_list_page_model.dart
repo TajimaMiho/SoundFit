@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mycloud/models/shop_list_class.dart';
+import 'package:mycloud/models/place_list.dart';
 
 class ShopListModel extends ChangeNotifier {
   List<Shop>? shops;
@@ -19,6 +19,12 @@ class ShopListModel extends ChangeNotifier {
     }).toList();
 
     this.shops = shops;
+    notifyListeners();
+  }
+
+  void filterByTitle(String title) {
+    if (shops == null) return;
+    shops = shops!.where((shop) => shop.title == title).toList();
     notifyListeners();
   }
 }

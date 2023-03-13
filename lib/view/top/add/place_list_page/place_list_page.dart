@@ -2,11 +2,13 @@ import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mycloud/models/shop_list_class.dart';
+import 'package:mycloud/models/place_list.dart';
 import 'package:mycloud/service/providers_provider.dart';
-import 'package:mycloud/view/top/add/add_page_model.dart';
+import 'package:mycloud/view/top/add/place_detail/place_detail.dart';
+import 'package:mycloud/view/top/add/place_detail/place_detail_controller.dart';
+import 'package:mycloud/view/top/add/place_list_page/place_list_page_model.dart';
 
-import 'package:mycloud/view/top/add/add_shop_page.dart';
+import 'package:mycloud/view/top/add/place_add/add_place_page.dart';
 import 'package:provider/provider.dart';
 
 class ShopListPage extends StatelessWidget {
@@ -32,6 +34,14 @@ class ShopListPage extends StatelessWidget {
             final List<Widget> widgets = shops
                 .map(
                   (shop) => ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                PlaceDetailPage(shoptitle: shop.title)),
+                      );
+                    },
                     leading: shop.imgURL != null
                         ? Image.network(shop.imgURL!)
                         : null,

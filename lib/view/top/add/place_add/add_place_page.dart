@@ -3,7 +3,7 @@ import 'dart:html';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mycloud/service/providers_provider.dart';
-import 'package:mycloud/view/top/add/add_shop_model.dart';
+import 'package:mycloud/view/top/add/place_add/add_place_model.dart';
 import 'package:provider/provider.dart';
 import 'dart:html' as html;
 
