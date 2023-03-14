@@ -2,6 +2,8 @@ import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mycloud/config/constants.dart';
+import 'package:mycloud/config/styles.dart';
 import 'package:mycloud/models/place_list.dart';
 import 'package:mycloud/service/providers_provider.dart';
 import 'package:mycloud/view/top/add/place_detail/place_detail.dart';
@@ -14,6 +16,8 @@ import 'package:provider/provider.dart';
 class ShopListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    double shortestSide = size.shortestSide;
     return ChangeNotifierProvider<ShopListModel>(
       create: (_) => ShopListModel()..fetchShopList(),
       child: Scaffold(
@@ -32,8 +36,9 @@ class ShopListPage extends StatelessWidget {
             }
 
             final List<Widget> widgets = shops
-                .map(
-                  (shop) => ListTile(
+                .map((shop) => buildListItem(
+                        shortestSide, shop.title, shop.author, shop.imgURL)
+                    /*ListTile(
                     onTap: () {
                       Navigator.push(
                         context,
@@ -47,8 +52,8 @@ class ShopListPage extends StatelessWidget {
                         : null,
                     title: Text(shop.title),
                     subtitle: Text(shop.author),
-                  ),
-                )
+                  ),*/
+                    )
                 .toList();
             return ListView(
               children: widgets,
@@ -84,5 +89,40 @@ class ShopListPage extends StatelessWidget {
         }),
       ),
     );
+  }
+
+  Widget buildListItem(
+      double shortestSide, String title, String author, String? imgURL) {
+    final Image image = Image.network(imgURL!);
+    return Consumer(builder: (context, ref, _) {
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PlaceDetailPage(shoptitle: title)),
+          );
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: appShadow,
+          ),
+          child: Column(
+            children: [
+              Image.network(
+                imgURL,
+                width: shortestSide / 2,
+              ),
+              Text(title),
+              Text(author),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
