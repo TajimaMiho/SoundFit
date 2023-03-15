@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:mycloud/config/styles.dart';
+import 'package:mycloud/config/them_text.dart';
 import 'package:mycloud/models/account.dart';
 import 'package:mycloud/models/user/user.dart';
 import 'package:mycloud/provider/login_provider.dart';
@@ -55,10 +56,11 @@ class ConfigPage extends ConsumerWidget {
           SizedBox(
             width: shortestSide / 20,
           ),
-          Text(
+          /*Text(
             account.name,
             style: TextStyle(fontSize: shortestSide / 12),
-          ),
+          ),*/
+          BlackText(account.name, shortestSide / 12)
         ],
       ),
     );

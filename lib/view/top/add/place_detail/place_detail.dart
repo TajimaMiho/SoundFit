@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mycloud/config/constants.dart';
 import 'package:mycloud/view/top/add/place_detail/place_detail_controller.dart';
 import 'package:mycloud/models/place_list.dart';
 import 'package:mycloud/view/top/add/place_list_page/place_list_page_model.dart';
@@ -13,6 +14,8 @@ class PlaceDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    double shortestSide = size.shortestSide;
     return ChangeNotifierProvider<ShopListModel>(
       create: (_) => ShopListModel()..fetchShopList(),
       child: Scaffold(
@@ -34,15 +37,8 @@ class PlaceDetailPage extends StatelessWidget {
                 shops.where((shop) => shop.title == shoptitle);
 
             final List<Widget> widgets = filteredShops
-                .map(
-                  (shop) => ListTile(
-                    leading: shop.imgURL != null
-                        ? Image.network(shop.imgURL!)
-                        : null,
-                    title: Text(shop.title),
-                    subtitle: Text(shop.author),
-                  ),
-                )
+                .map((shop) => buildListItem(
+                    shortestSide, shop.title, shop.author, shop.imgURL))
                 .toList();
 
             return ListView(
@@ -77,5 +73,40 @@ class PlaceDetailPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget buildListItem(
+      double shortestSide, String title, String author, String? imgURL) {
+    final Image image = Image.network(imgURL!);
+    return Consumer(builder: (context, ref, _) {
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PlaceDetailPage(shoptitle: title)),
+          );
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: appShadow,
+          ),
+          child: Column(
+            children: [
+              Image.network(
+                imgURL,
+                width: shortestSide / 2,
+              ),
+              Text(title),
+              Text(author),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
