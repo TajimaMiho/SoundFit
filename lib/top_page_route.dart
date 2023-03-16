@@ -59,17 +59,6 @@ class TopPageRoute extends ConsumerWidget {
                     'account',
                     isFocus: true),
                 label: 'account'),
-            BottomNavigationBarItem(
-                icon: _buildNavigationIconWithName(
-                    Icon(Icons.add_circle_outline,
-                        size: iconSize, color: Styles.secondaryColor),
-                    'add'),
-                activeIcon: _buildNavigationIconWithName(
-                    Icon(Icons.add_circle_outline,
-                        size: iconSize, color: Styles.primaryColor),
-                    'add',
-                    isFocus: true),
-                label: 'add'),
           ],
           currentIndex: _currentIndex,
           fixedColor: Styles.accentColor,

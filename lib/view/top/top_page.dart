@@ -58,7 +58,7 @@ class _TopPageState extends State<TopPage> {
           ),
         ),
         body: _loading
-            ? CircularProgressIndicator()
+            ? Center(child: CircularProgressIndicator())
             : SafeArea(
                 child: Stack(
                   fit: StackFit.expand,
