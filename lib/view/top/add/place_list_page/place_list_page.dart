@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mycloud/config/constants.dart';
+import 'package:mycloud/config/them_text.dart';
 import 'package:mycloud/models/place_list.dart';
 import 'package:mycloud/view/top/add/place_detail/place_detail.dart';
 import 'package:mycloud/view/top/add/place_list_page/place_list_page_model.dart';
@@ -30,7 +31,16 @@ class ShopListPage extends StatelessWidget {
 
             final List<Widget> widgets = shops
                 .map((shop) => buildListItem(
-                    shortestSide, shop.title, shop.author, shop.imgURL))
+                    shortestSide,
+                    shop.title,
+                    shop.author,
+                    shop.imgURL,
+                    shop.cry,
+                    shop.electronic,
+                    shop.cashRegister,
+                    shop.ventilationFan,
+                    shop.keyboard,
+                    shop.masticatory))
                 .toList();
             return ListView(
               children: widgets,
@@ -69,7 +79,16 @@ class ShopListPage extends StatelessWidget {
   }
 
   Widget buildListItem(
-      double shortestSide, String title, String author, String? imgURL) {
+      double shortestSide,
+      String title,
+      String author,
+      String? imgURL,
+      int cry,
+      int electronic,
+      int cashRegister,
+      int ventilationFan,
+      int keyboard,
+      int masticatory) {
     final Image image = Image.network(imgURL!);
     return Consumer(builder: (context, ref, _) {
       return GestureDetector(
@@ -94,8 +113,14 @@ class ShopListPage extends StatelessWidget {
                 imgURL,
                 width: shortestSide / 2,
               ),
-              Text(title),
-              Text(author),
+              BlackText(title, 36),
+              BlackText(author, 36),
+              BlackText("cry", 36),
+              BlackText("electronic", 36),
+              BlackText("cashRegister", 36),
+              BlackText("ventilationFan", 36),
+              BlackText("keyboard", 36),
+              BlackText("masticatory", 36),
             ],
           ),
         ),
