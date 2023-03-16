@@ -75,9 +75,13 @@ class _TopPageState extends State<TopPage> {
                       mapToolbarEnabled: false,
                       buildingsEnabled: true,
                       onTap: (LatLng latLng) {
-                        PlaceDetailPage(
-                          latLng: latLng,
-                          shoptitle: 'どこか',
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PlaceDetailPage(
+                                    latLng: latLng,
+                                    shoptitle: 'どこか',
+                                  )),
                         );
                       },
                     ),
