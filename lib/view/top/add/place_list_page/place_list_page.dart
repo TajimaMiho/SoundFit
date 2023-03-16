@@ -33,7 +33,6 @@ class ShopListPage extends StatelessWidget {
                 .map((shop) => buildListItem(
                     shortestSide,
                     shop.title,
-                    shop.author,
                     shop.imgURL,
                     shop.cry,
                     shop.electronic,
@@ -81,7 +80,6 @@ class ShopListPage extends StatelessWidget {
   Widget buildListItem(
       double shortestSide,
       String title,
-      String author,
       String? imgURL,
       int cry,
       int electronic,
@@ -114,13 +112,6 @@ class ShopListPage extends StatelessWidget {
                 width: shortestSide / 2,
               ),
               BlackText(title, 24),
-              BlackText(author, 24),
-              /*BlackText("cry", 24),
-              BlackText("electronic", 24),
-              BlackText("cashRegister", 24),
-              BlackText("ventilationFan", 24),
-              BlackText("keyboard", 24),
-              BlackText("masticatory", 24),*/
               buildSoundDetail("cry", cry),
               buildSoundDetail("electronic", electronic),
               buildSoundDetail("cashRegister", cashRegister),

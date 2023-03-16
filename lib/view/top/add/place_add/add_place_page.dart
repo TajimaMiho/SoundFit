@@ -58,7 +58,7 @@ class _AddShopPage extends State<AddShopPage> {
                         ),
                         TextField(
                           decoration: InputDecoration(
-                            hintText: 'お店の名前',
+                            hintText: '席の位置',
                           ),
                           onChanged: (text) {
                             model.title = text;
@@ -66,14 +66,6 @@ class _AddShopPage extends State<AddShopPage> {
                         ),
                         SizedBox(
                           height: 8,
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: '席の場所',
-                          ),
-                          onChanged: (text) {
-                            model.author = text;
-                          },
                         ),
                         SizedBox(
                           height: 16,

@@ -8,7 +8,6 @@ import 'package:image_picker_web/image_picker_web.dart';
 
 class AddShopModel extends ChangeNotifier {
   String? title;
-  String? author;
   bool isLoading = false;
   Uint8List? imageFile;
   int cry = 0;
@@ -37,10 +36,6 @@ class AddShopModel extends ChangeNotifier {
       throw 'タイトルが入力されていません';
     }
 
-    if (author == null || author!.isEmpty) {
-      throw '著者が入力されていません';
-    }
-
     final doc = FirebaseFirestore.instance.collection('shops').doc();
 
     String? imgURL;
@@ -55,7 +50,6 @@ class AddShopModel extends ChangeNotifier {
     // firestoreに追加
     await doc.set({
       'title': title,
-      'author': author,
       'imgURL': imgURL,
       'cry': cry,
       'electronic': electronic,

@@ -37,8 +37,8 @@ class PlaceDetailPage extends StatelessWidget {
                 shops.where((shop) => shop.title == shoptitle);
 
             final List<Widget> widgets = filteredShops
-                .map((shop) => buildListItem(
-                    shortestSide, shop.title, shop.author, shop.imgURL))
+                .map((shop) =>
+                    buildListItem(shortestSide, shop.title, shop.imgURL))
                 .toList();
 
             return ListView(
@@ -75,8 +75,7 @@ class PlaceDetailPage extends StatelessWidget {
     );
   }
 
-  Widget buildListItem(
-      double shortestSide, String title, String author, String? imgURL) {
+  Widget buildListItem(double shortestSide, String title, String? imgURL) {
     final Image image = Image.network(imgURL!);
     return Consumer(builder: (context, ref, _) {
       return GestureDetector(
@@ -102,7 +101,6 @@ class PlaceDetailPage extends StatelessWidget {
                 width: shortestSide / 2,
               ),
               Text(title),
-              Text(author),
             ],
           ),
         ),

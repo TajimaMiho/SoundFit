@@ -49,9 +49,7 @@ class FirePlaceDetailService {
     final document =
         await FirebaseFirestore.instance.collection('shops').doc(id).get();
 
-    return const PlaceDetail().copyWith(
-        title: document['title'],
-        author: document['author'],
-        imgURL: document['imgURL']);
+    return const PlaceDetail()
+        .copyWith(title: document['title'], imgURL: document['imgURL']);
   }
 }

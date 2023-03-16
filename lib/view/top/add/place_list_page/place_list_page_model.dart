@@ -13,7 +13,6 @@ class ShopListModel extends ChangeNotifier {
       Map<String, dynamic> data = document.data() as Map<String, dynamic>;
       final String id = document.id;
       final String title = data['title'];
-      final String author = data['author'];
       final String? imgURL = data['imgURL'];
       final int cry = data['cry'];
       final int electronic = data['electronic'];
@@ -21,7 +20,7 @@ class ShopListModel extends ChangeNotifier {
       final int ventilationFan = data['ventilationFan'];
       final int keyboard = data['keyboard'];
       final int masticatory = data['masticatory'];
-      return Shop(id, title, author, imgURL, cry, electronic, cashRegister,
+      return Shop(id, title, imgURL, cry, electronic, cashRegister,
           ventilationFan, keyboard, masticatory);
     }).toList();
 
