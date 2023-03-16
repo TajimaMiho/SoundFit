@@ -9,6 +9,7 @@ import 'package:mycloud/service/will_pop_call_back.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:mycloud/view/top/add/place_detail/place_detail.dart';
 
 double titleSize = 24.0;
 
@@ -73,8 +74,17 @@ class _TopPageState extends State<TopPage> {
                       myLocationButtonEnabled: true,
                       mapToolbarEnabled: false,
                       buildingsEnabled: true,
-                      onTap: (LatLng latLang) {
-                        print('Clicked: $latLang');
+                      onTap: (LatLng latLng) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PlaceDetailPage(
+                                    lat: latLng.latitude,
+                                    long: latLng.longitude,
+                                    shoptitle: 'どこか',
+                                  )),
+                        );
+                        print(latLng);
                       },
                     ),
                     //buildFloatingSearchBar(),

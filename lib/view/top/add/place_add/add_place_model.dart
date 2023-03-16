@@ -4,12 +4,15 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
 class AddShopModel extends ChangeNotifier {
   String? title;
   bool isLoading = false;
   Uint8List? imageFile;
+  double lat = 0;
+  double long = 0;
   int cry = 0;
   int electronic = 0;
   int cashRegister = 0;
@@ -51,6 +54,8 @@ class AddShopModel extends ChangeNotifier {
     await doc.set({
       'title': title,
       'imgURL': imgURL,
+      'lat': lat,
+      'long': long,
       'cry': cry,
       'electronic': electronic,
       'cashRegister': cashRegister,

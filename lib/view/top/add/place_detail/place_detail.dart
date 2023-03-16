@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mycloud/config/constants.dart';
 import 'package:mycloud/config/them_text.dart';
 import 'package:mycloud/view/top/add/place_detail/place_detail_controller.dart';
@@ -10,8 +11,11 @@ import 'package:provider/provider.dart';
 
 class PlaceDetailPage extends StatelessWidget {
   final String shoptitle;
+  final double lat;
+  final double long;
 
-  PlaceDetailPage({required this.shoptitle});
+  PlaceDetailPage(
+      {required this.shoptitle, required this.lat, required this.long});
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +38,7 @@ class PlaceDetailPage extends StatelessWidget {
               return CircularProgressIndicator();
             }
 
-            final filteredShops =
-                shops.where((shop) => shop.title == shoptitle);
+            final filteredShops = shops.where((shop) => (lat == shop.lat));
 
             final List<Widget> widgets = filteredShops
                 .map((shop) => buildListItem(
@@ -61,7 +64,10 @@ class PlaceDetailPage extends StatelessWidget {
             final bool? added = await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AddShopPage(),
+                builder: (context) => AddShopPage(
+                  lat: lat,
+                  long: long,
+                ),
                 fullscreenDialog: true,
               ),
             );
@@ -97,13 +103,6 @@ class PlaceDetailPage extends StatelessWidget {
     final Image image = Image.network(imgURL!);
     return Consumer(builder: (context, ref, _) {
       return GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => PlaceDetailPage(shoptitle: title)),
-          );
-        },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
           margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
