@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mycloud/config/constants.dart';
+import 'package:mycloud/config/them_text.dart';
 import 'package:mycloud/view/top/add/place_detail/place_detail_controller.dart';
 import 'package:mycloud/models/place_list.dart';
 import 'package:mycloud/view/top/add/place_list_page/place_list_page_model.dart';
@@ -37,8 +38,16 @@ class PlaceDetailPage extends StatelessWidget {
                 shops.where((shop) => shop.title == shoptitle);
 
             final List<Widget> widgets = filteredShops
-                .map((shop) =>
-                    buildListItem(shortestSide, shop.title, shop.imgURL))
+                .map((shop) => buildListItem(
+                    shortestSide,
+                    shop.title,
+                    shop.imgURL,
+                    shop.cry,
+                    shop.electronic,
+                    shop.cashRegister,
+                    shop.ventilationFan,
+                    shop.keyboard,
+                    shop.masticatory))
                 .toList();
 
             return ListView(
@@ -75,7 +84,16 @@ class PlaceDetailPage extends StatelessWidget {
     );
   }
 
-  Widget buildListItem(double shortestSide, String title, String? imgURL) {
+  Widget buildListItem(
+      double shortestSide,
+      String title,
+      String? imgURL,
+      int cry,
+      int electronic,
+      int cashRegister,
+      int ventilationFan,
+      int keyboard,
+      int masticatory) {
     final Image image = Image.network(imgURL!);
     return Consumer(builder: (context, ref, _) {
       return GestureDetector(
@@ -100,11 +118,42 @@ class PlaceDetailPage extends StatelessWidget {
                 imgURL,
                 width: shortestSide / 2,
               ),
-              Text(title),
+              BlackText(title, 24),
+              buildSoundDetail("cry", cry),
+              buildSoundDetail("electronic", electronic),
+              buildSoundDetail("cashRegister", cashRegister),
+              buildSoundDetail("ventilationFan", ventilationFan),
+              buildSoundDetail("keyboard", keyboard),
+              buildSoundDetail("masticatory", masticatory),
             ],
           ),
         ),
       );
     });
+  }
+
+  Widget buildSoundDetail(String shoJyoNm, int react) {
+    return Container(
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          BlackText(shoJyoNm, 24),
+          react == 0
+              ? Icon(Icons.sentiment_very_satisfied, color: Colors.green)
+              : react == 1
+                  ? Icon(Icons.sentiment_satisfied, color: Colors.lightGreen)
+                  : react == 2
+                      ? Icon(Icons.sentiment_neutral, color: Colors.amber)
+                      : react == 3
+                          ? Icon(Icons.sentiment_dissatisfied,
+                              color: Colors.redAccent)
+                          : react == 4
+                              ? Icon(Icons.sentiment_very_dissatisfied,
+                                  color: Colors.red)
+                              : Icon(Icons.question_mark)
+        ],
+      ),
+    );
   }
 }
