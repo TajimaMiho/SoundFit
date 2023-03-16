@@ -6,7 +6,7 @@ import 'package:mycloud/view/top/add/place_add/add_place_model.dart';
 import 'package:provider/provider.dart';
 
 class AddShopPage extends StatefulWidget {
-  late final LatLng latLng;
+  late final String latLng;
 
   AddShopPage({required this.latLng});
   @override
@@ -14,7 +14,7 @@ class AddShopPage extends StatefulWidget {
 }
 
 class _AddShopPage extends State<AddShopPage> {
-  late final LatLng latLng;
+  late final String latLng;
 
   _AddShopPage({required this.latLng});
   late List<double> _rating = [0, 0, 0, 0, 0, 0];
@@ -101,7 +101,7 @@ class _AddShopPage extends State<AddShopPage> {
                               model.ventilationFan = _rating[3] as int;
                               model.keyboard = _rating[4] as int;
                               model.masticatory = _rating[5] as int;
-                              model.latLng = latLng;
+                              model.latLng = latLng as String;
                               model.startLoading();
                               await model.addShop();
                               Navigator.of(context).pop(true);

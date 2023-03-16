@@ -11,7 +11,7 @@ class AddShopModel extends ChangeNotifier {
   String? title;
   bool isLoading = false;
   Uint8List? imageFile;
-  late LatLng latLng;
+  String latLng = "";
   int cry = 0;
   int electronic = 0;
   int cashRegister = 0;

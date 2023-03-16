@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 
 class PlaceDetailPage extends StatelessWidget {
   final String shoptitle;
-  final LatLng latLng;
+  final String latLng;
 
   PlaceDetailPage({required this.shoptitle, required this.latLng});
 
@@ -62,7 +62,9 @@ class PlaceDetailPage extends StatelessWidget {
             final bool? added = await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AddShopPage(latLng: latLng),
+                builder: (context) => AddShopPage(
+                  latLng: latLng,
+                ),
                 fullscreenDialog: true,
               ),
             );

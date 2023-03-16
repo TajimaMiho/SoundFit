@@ -79,10 +79,11 @@ class _TopPageState extends State<TopPage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => PlaceDetailPage(
-                                    latLng: latLng,
+                                    latLng: latLng.toString(),
                                     shoptitle: 'どこか',
                                   )),
                         );
+                        print(latLng);
                       },
                     ),
                     //buildFloatingSearchBar(),
