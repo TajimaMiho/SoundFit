@@ -4,12 +4,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycloud/config/styles.dart';
 import 'package:mycloud/models/user/user.dart';
 import 'package:mycloud/provider/login_provider.dart';
+import 'package:mycloud/view/top/add/place_detail/place_detail.dart';
 import 'package:mycloud/view/top/add/place_list_page/place_list_page.dart';
 import 'package:mycloud/view/top/my_page.dart';
 import 'package:mycloud/view/top/top_page.dart';
 
 class TopPageRoute extends ConsumerWidget {
-  final _pageWidgets = [TopPage(), ConfigPage(), ShopListPage()];
+  final _pageWidgets = [TopPage(), ConfigPage()];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -97,5 +98,5 @@ class TopPageRoute extends ConsumerWidget {
 }
 
 final currentIndexProvider = StateProvider((ref) {
-  return 2;
+  return 0;
 });

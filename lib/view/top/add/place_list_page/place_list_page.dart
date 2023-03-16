@@ -1,4 +1,7 @@
+/*import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mycloud/config/constants.dart';
 import 'package:mycloud/config/them_text.dart';
 import 'package:mycloud/models/place_list.dart';
@@ -54,7 +57,7 @@ class ShopListPage extends StatelessWidget {
               final bool? added = await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AddShopPage(),
+                  builder: (context) => AddShopPage(latLng: latLng,),
                   fullscreenDialog: true,
                 ),
               );
@@ -90,13 +93,6 @@ class ShopListPage extends StatelessWidget {
     final Image image = Image.network(imgURL!);
     return Consumer(builder: (context, ref, _) {
       return GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => PlaceDetailPage(shoptitle: title)),
-          );
-        },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
           margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
@@ -149,4 +145,4 @@ class ShopListPage extends StatelessWidget {
       ),
     );
   }
-}
+}*/

@@ -14,13 +14,14 @@ class ShopListModel extends ChangeNotifier {
       final String id = document.id;
       final String title = data['title'];
       final String? imgURL = data['imgURL'];
+      final String latLng = data['latLong'];
       final int cry = data['cry'];
       final int electronic = data['electronic'];
       final int cashRegister = data['cashRegister'];
       final int ventilationFan = data['ventilationFan'];
       final int keyboard = data['keyboard'];
       final int masticatory = data['masticatory'];
-      return Shop(id, title, imgURL, cry, electronic, cashRegister,
+      return Shop(id, title, imgURL, latLng, cry, electronic, cashRegister,
           ventilationFan, keyboard, masticatory);
     }).toList();
 
