@@ -79,7 +79,8 @@ class _TopPageState extends State<TopPage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => PlaceDetailPage(
-                                    latLng: latLng.toString(),
+                                    lat: latLng.latitude,
+                                    long: latLng.longitude,
                                     shoptitle: 'どこか',
                                   )),
                         );

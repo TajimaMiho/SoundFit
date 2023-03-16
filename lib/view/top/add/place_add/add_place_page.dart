@@ -6,17 +6,19 @@ import 'package:mycloud/view/top/add/place_add/add_place_model.dart';
 import 'package:provider/provider.dart';
 
 class AddShopPage extends StatefulWidget {
-  late final String latLng;
+  late final double lat;
+  late final double long;
 
-  AddShopPage({required this.latLng});
+  AddShopPage({required this.lat, required this.long});
   @override
-  _AddShopPage createState() => _AddShopPage(latLng: latLng);
+  _AddShopPage createState() => _AddShopPage(lat: lat, long: long);
 }
 
 class _AddShopPage extends State<AddShopPage> {
-  late final String latLng;
+  late final double lat;
+  late final double long;
 
-  _AddShopPage({required this.latLng});
+  _AddShopPage({required this.lat, required this.long});
   late List<double> _rating = [0, 0, 0, 0, 0, 0];
   double _initialRating = 0;
 
@@ -101,7 +103,8 @@ class _AddShopPage extends State<AddShopPage> {
                               model.ventilationFan = _rating[3] as int;
                               model.keyboard = _rating[4] as int;
                               model.masticatory = _rating[5] as int;
-                              model.latLng = latLng as String;
+                              model.lat = lat;
+                              model.long = long;
                               model.startLoading();
                               await model.addShop();
                               Navigator.of(context).pop(true);

@@ -11,9 +11,11 @@ import 'package:provider/provider.dart';
 
 class PlaceDetailPage extends StatelessWidget {
   final String shoptitle;
-  final String latLng;
+  final double lat;
+  final double long;
 
-  PlaceDetailPage({required this.shoptitle, required this.latLng});
+  PlaceDetailPage(
+      {required this.shoptitle, required this.lat, required this.long});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class PlaceDetailPage extends StatelessWidget {
               return CircularProgressIndicator();
             }
 
-            final filteredShops = shops.where((shop) => shop.latLng == latLng);
+            final filteredShops = shops.where((shop) => (lat == shop.lat));
 
             final List<Widget> widgets = filteredShops
                 .map((shop) => buildListItem(
@@ -63,7 +65,8 @@ class PlaceDetailPage extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => AddShopPage(
-                  latLng: latLng,
+                  lat: lat,
+                  long: long,
                 ),
                 fullscreenDialog: true,
               ),

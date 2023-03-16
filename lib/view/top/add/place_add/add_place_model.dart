@@ -11,7 +11,8 @@ class AddShopModel extends ChangeNotifier {
   String? title;
   bool isLoading = false;
   Uint8List? imageFile;
-  String latLng = "";
+  double lat = 0;
+  double long = 0;
   int cry = 0;
   int electronic = 0;
   int cashRegister = 0;
@@ -53,7 +54,8 @@ class AddShopModel extends ChangeNotifier {
     await doc.set({
       'title': title,
       'imgURL': imgURL,
-      'latLng': latLng,
+      'lat': lat,
+      'long': long,
       'cry': cry,
       'electronic': electronic,
       'cashRegister': cashRegister,
