@@ -113,18 +113,49 @@ class ShopListPage extends StatelessWidget {
                 imgURL,
                 width: shortestSide / 2,
               ),
-              BlackText(title, 36),
-              BlackText(author, 36),
-              BlackText("cry", 36),
-              BlackText("electronic", 36),
-              BlackText("cashRegister", 36),
-              BlackText("ventilationFan", 36),
-              BlackText("keyboard", 36),
-              BlackText("masticatory", 36),
+              BlackText(title, 24),
+              BlackText(author, 24),
+              /*BlackText("cry", 24),
+              BlackText("electronic", 24),
+              BlackText("cashRegister", 24),
+              BlackText("ventilationFan", 24),
+              BlackText("keyboard", 24),
+              BlackText("masticatory", 24),*/
+              buildSoundDetail("cry", cry),
+              buildSoundDetail("electronic", electronic),
+              buildSoundDetail("cashRegister", cashRegister),
+              buildSoundDetail("ventilationFan", ventilationFan),
+              buildSoundDetail("keyboard", keyboard),
+              buildSoundDetail("masticatory", masticatory),
             ],
           ),
         ),
       );
     });
+  }
+
+  Widget buildSoundDetail(String shoJyoNm, int react) {
+    return Container(
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          BlackText(shoJyoNm, 24),
+          react == 0
+              ? Icon(Icons.sentiment_very_satisfied, color: Colors.green)
+              : react == 1
+                  ? Icon(Icons.sentiment_satisfied, color: Colors.lightGreen)
+                  : react == 2
+                      ? Icon(Icons.sentiment_neutral, color: Colors.amber)
+                      : react == 3
+                          ? Icon(Icons.sentiment_dissatisfied,
+                              color: Colors.redAccent)
+                          : react == 4
+                              ? Icon(Icons.sentiment_very_dissatisfied,
+                                  color: Colors.red)
+                              : Icon(Icons.question_mark)
+        ],
+      ),
+    );
   }
 }

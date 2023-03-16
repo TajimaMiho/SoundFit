@@ -3,7 +3,6 @@ import 'package:mycloud/config/styles.dart';
 import 'package:mycloud/config/them_text.dart';
 import 'package:mycloud/view/top/add/place_add/add_place_model.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class AddShopPage extends StatefulWidget {
   @override
