@@ -4,11 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycloud/config/styles.dart';
 import 'package:mycloud/models/user/user.dart';
 import 'package:mycloud/provider/login_provider.dart';
+import 'package:mycloud/view/top/add/place_list_page/place_list_page.dart';
 import 'package:mycloud/view/top/my_page.dart';
 import 'package:mycloud/view/top/top_page.dart';
 
 class TopPageRoute extends ConsumerWidget {
-  final _pageWidgets = [TopPage(), ConfigPage()];
+  final _pageWidgets = [TopPage(), ConfigPage(), ShopListPage()];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -57,6 +58,17 @@ class TopPageRoute extends ConsumerWidget {
                     'account',
                     isFocus: true),
                 label: 'account'),
+            BottomNavigationBarItem(
+                icon: _buildNavigationIconWithName(
+                    Icon(Icons.add_circle_outline,
+                        size: iconSize, color: Styles.secondaryColor),
+                    'add'),
+                activeIcon: _buildNavigationIconWithName(
+                    Icon(Icons.add_circle_outline,
+                        size: iconSize, color: Styles.primaryColor),
+                    'add',
+                    isFocus: true),
+                label: 'add'),
           ],
           currentIndex: _currentIndex,
           fixedColor: Styles.accentColor,
@@ -85,5 +97,5 @@ class TopPageRoute extends ConsumerWidget {
 }
 
 final currentIndexProvider = StateProvider((ref) {
-  return 0;
+  return 2;
 });
