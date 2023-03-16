@@ -10,6 +10,7 @@ import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mycloud/view/top/add/place_detail/place_detail.dart';
+import 'package:mycloud/view/top/add/place_list_page/place_list_page.dart';
 
 double titleSize = 24.0;
 
@@ -78,7 +79,7 @@ class _TopPageState extends State<TopPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => PlaceDetailPage(
+                              builder: (context) => ShopListPage(
                                     lat: latLng.latitude,
                                     long: latLng.longitude,
                                     shoptitle: 'どこか',

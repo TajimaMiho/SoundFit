@@ -1,4 +1,4 @@
-/*import 'dart:convert';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -11,6 +11,12 @@ import 'package:mycloud/view/top/add/place_add/add_place_page.dart';
 import 'package:provider/provider.dart';
 
 class ShopListPage extends StatelessWidget {
+  final String shoptitle;
+  final double lat;
+  final double long;
+
+  ShopListPage(
+      {required this.shoptitle, required this.lat, required this.long});
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -32,7 +38,8 @@ class ShopListPage extends StatelessWidget {
               return CircularProgressIndicator();
             }
 
-            final List<Widget> widgets = shops
+            final filteredShops = shops.where((shop) => (lat == shop.lat));
+            final List<Widget> widgets = filteredShops
                 .map((shop) => buildListItem(
                     shortestSide,
                     shop.title,
@@ -57,7 +64,10 @@ class ShopListPage extends StatelessWidget {
               final bool? added = await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AddShopPage(latLng: latLng,),
+                  builder: (context) => AddShopPage(
+                    lat: lat,
+                    long: long,
+                  ),
                   fullscreenDialog: true,
                 ),
               );
@@ -145,4 +155,4 @@ class ShopListPage extends StatelessWidget {
       ),
     );
   }
-}*/
+}
