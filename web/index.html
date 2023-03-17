@@ -26,6 +26,11 @@
   <meta name="apple-mobile-web-app-title" content="sound">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
+  <script src="https://maps.googleapis.com/maps/api/js?key=API-KEY"></script>
+
+  <title>google_maps_in_flutter</title>
+  <link rel="manifest" href="manifest.json">
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
@@ -59,11 +64,13 @@
       storageBucket: "sound-57f47.appspot.com",
       messagingSenderId: "371192337220",
       appId: "1:371192337220:web:b4c01a3b1cdfd4efe73d11",
-      measurementId: "G-42553QW5S3"
+      measurementId: "G-42553QW5S3",
+      storageBucket: "gs://sound-57f47.appspot.com/"
     };
   
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    const storage = firebase.storage();
     const analytics = getAnalytics(app);
   </script>
 

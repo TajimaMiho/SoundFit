@@ -18,7 +18,8 @@ Future<void> main() async {
           apiKey: configurations.apiKey,
           appId: configurations.appId,
           messagingSenderId: configurations.messagingSenderId,
-          projectId: configurations.projectId));
+          projectId: configurations.projectId,
+          storageBucket: configurations.storageBucket));
   runApp(
     ProviderScope(
       child: SoundFit(),
