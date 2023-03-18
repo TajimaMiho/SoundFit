@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mycloud/config/styles.dart';
@@ -8,17 +9,19 @@ import 'package:provider/provider.dart';
 class AddShopPage extends StatefulWidget {
   late final double lat;
   late final double long;
+  late final bool pin;
 
-  AddShopPage({required this.lat, required this.long});
+  AddShopPage({required this.lat, required this.long, required this.pin});
   @override
-  _AddShopPage createState() => _AddShopPage(lat: lat, long: long);
+  _AddShopPage createState() => _AddShopPage(lat: lat, long: long, pin: pin);
 }
 
 class _AddShopPage extends State<AddShopPage> {
   late final double lat;
   late final double long;
+  late final bool pin;
 
-  _AddShopPage({required this.lat, required this.long});
+  _AddShopPage({required this.lat, required this.long, required this.pin});
   late List<double> _rating = [0, 0, 0, 0, 0, 0];
   double _initialRating = 0;
 
@@ -62,6 +65,13 @@ class _AddShopPage extends State<AddShopPage> {
                           ),
                           onTap: () async {
                             print("反応！");
+                            await FirebaseFirestore.instance
+                                .collection('places') // コレクションID
+                                .doc()
+                                .set({
+                              'lat': lat,
+                              'long': long,
+                            });
                             await model.pickImage();
                           },
                         ),

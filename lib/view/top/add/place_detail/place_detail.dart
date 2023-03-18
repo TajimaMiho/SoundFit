@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mycloud/config/constants.dart';
 import 'package:mycloud/config/them_text.dart';
@@ -67,6 +67,7 @@ class PlaceDetailPage extends StatelessWidget {
                 builder: (context) => AddShopPage(
                   lat: lat,
                   long: long,
+                  pin: false,
                 ),
                 fullscreenDialog: true,
               ),
@@ -155,4 +156,4 @@ class PlaceDetailPage extends StatelessWidget {
       ),
     );
   }
-}
+}*/

@@ -20,6 +20,7 @@ class ShopListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    bool pin = false;
     double shortestSide = size.shortestSide;
     return ChangeNotifierProvider<ShopListModel>(
       create: (_) => ShopListModel()..fetchShopList(),
@@ -39,6 +40,8 @@ class ShopListPage extends StatelessWidget {
             }
 
             final filteredShops = shops.where((shop) => (lat == shop.lat));
+            if (filteredShops == null) pin = true;
+
             final List<Widget> widgets = filteredShops
                 .map((shop) => buildListItem(
                     shortestSide,
@@ -67,6 +70,7 @@ class ShopListPage extends StatelessWidget {
                   builder: (context) => AddShopPage(
                     lat: lat,
                     long: long,
+                    pin: pin,
                   ),
                   fullscreenDialog: true,
                 ),

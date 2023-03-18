@@ -96,3 +96,95 @@ class _TopPageState extends State<TopPage> {
     );
   }
 }
+
+/*class _TopPageState extends State<TopPage> {
+  Completer<GoogleMapController> _controller = Completer();
+
+  late LatLng _initialPosition;
+  late bool _loading;
+
+  Set<Marker> _markers = {}; // 追加
+
+  void initState() {
+    super.initState();
+    _loading = true;
+    _getUserLocation();
+  }
+
+  void _getUserLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    setState(() {
+      _initialPosition = LatLng(position.latitude, position.longitude);
+      _loading = false;
+      print(position);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      //前のページに戻らせたくない時に使う
+      onWillPop: willPopCallback,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Search',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        body: _loading
+            ? Center(child: CircularProgressIndicator())
+            : SafeArea(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    GoogleMap(
+                      initialCameraPosition: CameraPosition(
+                        target: _initialPosition,
+                        zoom: 14.4746,
+                      ),
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller.complete(controller);
+                      },
+                      myLocationEnabled: true,
+                      myLocationButtonEnabled: true,
+                      mapToolbarEnabled: false,
+                      buildingsEnabled: true,
+                      onTap: (LatLng latLng) {
+                        _addMarker(latLng); // 追加
+                      },
+                      markers: _markers, // 追加
+                    ),
+                    //buildFloatingSearchBar(),
+                  ],
+                ),
+              ),
+      ),
+    );
+  }
+
+  void _addMarker(LatLng latLng) {
+    setState(() {
+      _markers.clear();
+      _markers.add(
+        Marker(
+          markerId: MarkerId('selected-location'),
+          position: latLng,
+          onTap: () {
+            // 追加
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ShopListPage(
+                        lat: latLng.latitude,
+                        long: latLng.longitude,
+                        shoptitle: 'どこか',
+                      )),
+            );
+          },
+        ),
+      );
+    });
+  }
+}*/
