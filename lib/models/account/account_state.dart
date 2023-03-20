@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycloud/models/account.dart';
+import 'package:mycloud/models/account/account.dart';
 part 'account_state.freezed.dart';
 
 @freezed

@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mycloud/models/account.dart';
-import 'package:mycloud/models/account_state.dart';
-import 'package:mycloud/models/place_list.dart';
-import 'package:mycloud/provider/login_provider.dart';
+import 'package:mycloud/models/account/account.dart';
+import 'package:mycloud/models/account/account_state.dart';
+import 'package:mycloud/models/place/place_list.dart';
+import 'package:mycloud/provider/login/login_provider.dart';
 
 final accountProvider =
     StateNotifierProvider<AccountStateProvider, AccountState>(

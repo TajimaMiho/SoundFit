@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mycloud/config/constants.dart';
 import 'package:mycloud/config/them_text.dart';
-import 'package:mycloud/models/place_list.dart';
+import 'package:mycloud/models/place/place_list.dart';
 import 'package:mycloud/view/top/add/place_detail/place_detail.dart';
 import 'package:mycloud/view/top/add/place_list_page/place_list_page_model.dart';
 import 'package:mycloud/view/top/add/place_add/add_place_page.dart';

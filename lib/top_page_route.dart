@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycloud/config/styles.dart';
 import 'package:mycloud/models/user/user.dart';
-import 'package:mycloud/provider/login_provider.dart';
+import 'package:mycloud/provider/login/login_provider.dart';
 import 'package:mycloud/view/top/add/place_detail/place_detail.dart';
 import 'package:mycloud/view/top/add/place_list_page/place_list_page.dart';
 import 'package:mycloud/view/top/my_page.dart';
