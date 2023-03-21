@@ -16,7 +16,7 @@ class PlaceModel with _$PlaceModel {
       _$PlaceModelFromJson(json);
 }
 
-Future<List<PlaceModel>> getPlaces() async {
+/*Future<List<PlaceModel>> getPlaces() async {
   final querySnapshot =
       await FirebaseFirestore.instance.collection('places').get();
 
@@ -29,4 +29,4 @@ Future<List<PlaceModel>> getPlaces() async {
   }).toList();
 
   return places;
-}
+}*/

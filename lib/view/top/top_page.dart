@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mycloud/models/place/place_model.dart';
 import 'package:mycloud/provider/markers/markers_provider.dart';
+import 'package:mycloud/provider/place_model/place_model_provider.dart';
 import 'package:mycloud/service/will_pop_call_back.dart';
 
 import 'dart:async';
@@ -31,6 +32,14 @@ class TopPage extends ConsumerWidget {
             final position = snapshot.data!;
             final initialPosition =
                 LatLng(position.latitude, position.longitude);
+            ref.watch(placeModelProvider.notifier).getPlaces();
+            final places = ref.watch(placeModelProvider);
+            if (places == null) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            ref.watch(markersProvider.notifier).addMarkers(places);
             return SafeArea(
               child: Stack(
                 fit: StackFit.expand,
@@ -42,8 +51,6 @@ class TopPage extends ConsumerWidget {
                     ),
                     onMapCreated: (GoogleMapController controller) async {
                       _controller.complete(controller);
-                      final places = await getPlaces();
-                      ref.read(markersProvider.notifier).addMarkers(places);
                     },
                     myLocationEnabled: true,
                     myLocationButtonEnabled: true,

@@ -1,6 +1,31 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mycloud/models/place/place_model.dart';
+import 'package:mycloud/provider/place_model/place_model_provider.dart';
+
+final markersProvider =
+    StateNotifierProvider<MarkersNotifier, List<Marker>>((ref) {
+  return MarkersNotifier([]);
+});
+
+class MarkersNotifier extends StateNotifier<List<Marker>> {
+  MarkersNotifier(List<Marker> state) : super(state);
+
+  Future<void> addMarkers(List<PlaceModel> places) async {
+    final newMarkers = places.map((place) {
+      return Marker(
+        markerId: MarkerId('${place.lat}-${place.long}'),
+        position: LatLng(place.lat, place.long),
+      );
+    }).toList();
+
+    state = newMarkers;
+  }
+
+  void clearMarkers() {
+    state = [];
+  }
+}
 //import 'package:freezed_annotation/freezed_annotation.dart';
 //part 'markers_provider.freezed.dart';
 
@@ -42,6 +67,7 @@ class MarkersNotifier extends StateNotifier<MarkersState> {
 
 //MarkersNotifier(List<Marker> state) : super(state);
 
+/*
 final markersProvider =
     StateNotifierProvider<MarkersNotifier, List<Marker>>((ref) {
   return MarkersNotifier([]);
@@ -50,8 +76,19 @@ final markersProvider =
 class MarkersNotifier extends StateNotifier<List<Marker>> {
   MarkersNotifier(List<Marker> state) : super(state);
 
-  void addMarkers(List<PlaceModel> places) {
-    var newMarkers = places.map((place) {
+  void addMarkers() async {
+    final querySnapshot =
+        await FirebaseFirestore.instance.collection('places').get();
+
+    final places = querySnapshot.docs.map((doc) {
+      final data = doc.data();
+      return PlaceModel(
+        lat: data['lat'],
+        long: data['long'],
+      );
+    }).toList();
+
+    final newMarkers = places.map((place) {
       return Marker(
         markerId: MarkerId('${place.lat}-${place.long}'),
         position: LatLng(place.lat, place.long),
@@ -64,4 +101,4 @@ class MarkersNotifier extends StateNotifier<List<Marker>> {
   void clearMarkers() {
     state = [];
   }
-}
+}*/
