@@ -39,7 +39,7 @@ class TopPage extends ConsumerWidget {
                 child: CircularProgressIndicator(),
               );
             }
-            ref.watch(markersProvider.notifier).addMarkers(places);
+            ref.watch(markersProvider.notifier).addMarkers(context, places);
             return SafeArea(
               child: Stack(
                 fit: StackFit.expand,

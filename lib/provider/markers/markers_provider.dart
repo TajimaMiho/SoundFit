@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mycloud/models/place/place_model.dart';
 import 'package:mycloud/provider/place_model/place_model_provider.dart';
+import 'package:mycloud/view/top/add/place_list_page/place_list_page.dart';
 
 final markersProvider =
     StateNotifierProvider<MarkersNotifier, List<Marker>>((ref) {
@@ -11,11 +13,23 @@ final markersProvider =
 class MarkersNotifier extends StateNotifier<List<Marker>> {
   MarkersNotifier(List<Marker> state) : super(state);
 
-  Future<void> addMarkers(List<PlaceModel> places) async {
+  Future<void> addMarkers(BuildContext context, List<PlaceModel> places) async {
     final newMarkers = places.map((place) {
       return Marker(
         markerId: MarkerId('${place.lat}-${place.long}'),
         position: LatLng(place.lat, place.long),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ShopListPage(
+                lat: place.lat,
+                long: place.long,
+                shoptitle: 'どこか',
+              ),
+            ),
+          );
+        },
       );
     }).toList();
 
@@ -26,6 +40,7 @@ class MarkersNotifier extends StateNotifier<List<Marker>> {
     state = [];
   }
 }
+
 //import 'package:freezed_annotation/freezed_annotation.dart';
 //part 'markers_provider.freezed.dart';
 
