@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:mycloud/config/styles.dart';
 import 'package:mycloud/config/them_text.dart';
-import 'package:mycloud/models/account.dart';
+import 'package:mycloud/models/account/account.dart';
 import 'package:mycloud/models/user/user.dart';
-import 'package:mycloud/provider/login_provider.dart';
+import 'package:mycloud/provider/login/login_provider.dart';
 import 'package:mycloud/service/providers_provider.dart';
 
 class ConfigPage extends ConsumerWidget {

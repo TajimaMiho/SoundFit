@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mycloud/models/user/user.dart';
-import 'package:mycloud/provider/login_state.dart';
+import 'package:mycloud/provider/login/login_state.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase;
 
 final loginProvider = StateNotifierProvider<LoginProvider, LoginState>(

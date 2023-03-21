@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mycloud/config/styles.dart';
-import 'package:mycloud/provider/login_provider.dart';
-import 'package:mycloud/provider/login_state.dart';
+import 'package:mycloud/provider/login/login_provider.dart';
+import 'package:mycloud/provider/login/login_state.dart';
 
 class LoginPage extends ConsumerWidget {
   @override

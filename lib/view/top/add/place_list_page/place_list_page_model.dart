@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mycloud/models/place_list.dart';
+import 'package:mycloud/models/place/place_list.dart';
 
 class ShopListModel extends ChangeNotifier {
   List<Shop>? shops;
