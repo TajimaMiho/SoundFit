@@ -19,8 +19,12 @@ class ShopListModel extends ChangeNotifier {
       final int electronic = data['electronic'];
       final int ventilationFan = data['ventilationFan'];
       final int masticatory = data['masticatory'];
+      final String situation = data['situation'];
+      final String timezone = data['timezone'];
+      final String seatforme = data['seatforme'];
+      final String spacebetween = data['spacebetween'];
       return Shop(id, title, imgURL, lat, long, electronic, ventilationFan,
-          masticatory);
+          masticatory, situation, timezone, seatforme, spacebetween);
     }).toList();
 
     this.shops = shops;

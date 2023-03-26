@@ -1,6 +1,18 @@
 class Shop {
-  Shop(this.id, this.title, this.imgURL, this.lat, this.long, this.electronic,
-      this.ventilationFan, this.masticatory);
+  Shop(
+    this.id,
+    this.title,
+    this.imgURL,
+    this.lat,
+    this.long,
+    this.electronic,
+    this.ventilationFan,
+    this.masticatory,
+    this.situation,
+    this.timezone,
+    this.seatforme,
+    this.spacebetween,
+  );
   String id;
   String title;
   String? imgURL;
@@ -9,4 +21,8 @@ class Shop {
   int electronic;
   int ventilationFan;
   int masticatory;
+  String situation;
+  String timezone;
+  String seatforme;
+  String spacebetween;
 }

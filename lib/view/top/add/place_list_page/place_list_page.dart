@@ -49,7 +49,11 @@ class ShopListPage extends StatelessWidget {
                     shop.imgURL,
                     shop.electronic,
                     shop.ventilationFan,
-                    shop.masticatory))
+                    shop.masticatory,
+                    shop.situation,
+                    shop.timezone,
+                    shop.seatforme,
+                    shop.spacebetween))
                 .toList();
             return ListView(
               children: widgets,
@@ -91,8 +95,17 @@ class ShopListPage extends StatelessWidget {
     );
   }
 
-  Widget buildListItem(double shortestSide, String title, String? imgURL,
-      int electronic, int ventilationFan, int masticatory) {
+  Widget buildListItem(
+      double shortestSide,
+      String title,
+      String? imgURL,
+      int electronic,
+      int ventilationFan,
+      int masticatory,
+      String situation,
+      String timezone,
+      String seatforme,
+      String spacebetween) {
     final Image image = Image.network(imgURL!);
     return Consumer(builder: (context, ref, _) {
       return GestureDetector(

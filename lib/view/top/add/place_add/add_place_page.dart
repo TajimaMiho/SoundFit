@@ -214,6 +214,10 @@ class _AddShopPage extends State<AddShopPage> {
                                 model.masticatory = _rating[2] as int;
                                 model.lat = lat;
                                 model.long = long;
+                                model.situation = situation;
+                                model.timezone = timezone;
+                                model.seatforme = seatforme;
+                                model.spacebetween = spacebetween;
                                 model.startLoading();
                                 await model.addShop();
                                 Navigator.of(context).pop(true);

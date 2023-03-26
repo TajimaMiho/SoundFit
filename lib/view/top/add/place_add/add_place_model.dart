@@ -16,6 +16,10 @@ class AddShopModel extends ChangeNotifier {
   int electronic = 0;
   int ventilationFan = 0;
   int masticatory = 0;
+  String? situation;
+  String? timezone;
+  String? seatforme;
+  String? spacebetween;
 
   var metadata;
 
@@ -56,6 +60,10 @@ class AddShopModel extends ChangeNotifier {
       'electronic': electronic,
       'ventilationFan': ventilationFan,
       'masticatory': masticatory,
+      'situation': situation,
+      'timezone': timezone,
+      'seatforme': seatforme,
+      'spacebetween': spacebetween,
     });
   }
 
