@@ -62,6 +62,7 @@ class _AddShopPage extends State<AddShopPage> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
+                        SizedBox(height: 24),
                         GestureDetector(
                           child: SizedBox(
                             width: 160,
@@ -73,7 +74,7 @@ class _AddShopPage extends State<AddShopPage> {
                                     decoration: BoxDecoration(
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Colors.grey,
+                                          color: Styles.primaryColor,
                                           offset: Offset(1.0, 1.0),
                                           blurRadius: 0.8,
                                           spreadRadius: 0.8,
@@ -208,6 +209,7 @@ class _AddShopPage extends State<AddShopPage> {
                                   'long': long,
                                 });
                               }
+
                               try {
                                 model.electronic = _rating[0] as int;
                                 model.ventilationFan = _rating[1] as int;

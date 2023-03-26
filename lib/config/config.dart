@@ -1,10 +1,10 @@
 class Configurations {
-  static const _apiKey = "AIzaSyA07OLYorJjFRJCAOZ534Zud1AdtFHrr3Q";
-  static const _authDomain = "sound-57f47.firebaseapp.com";
-  static const _projectId = "sound-57f47";
-  static const _storageBucket = "sound-57f47.appspot.com";
-  static const _messagingSenderId = "371192337220";
-  static const _appId = "1:371192337220:web:b4c01a3b1cdfd4efe73d11";
+  static const _apiKey = "AIzaSyA7LKWzgDxXzoyWti3NtCgQdbLqJGG4ELE";
+  static const _authDomain = "sound-b7f01.firebaseapp.com";
+  static const _projectId = "sound-b7f01";
+  static const _storageBucket = "sound-b7f01.appspot.com";
+  static const _messagingSenderId = "71383641237";
+  static const _appId = "1:71383641237:web:9fa5d00d8568571a867f9c";
   //static const storageBucket = "gs://sound-57f47.appspot.com/";
 
   String get apiKey => _apiKey;

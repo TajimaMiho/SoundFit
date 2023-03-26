@@ -37,7 +37,7 @@ class AddShopModel extends ChangeNotifier {
 
   Future addShop() async {
     if (title == null || title == "") {
-      throw 'タイトルが入力されていません';
+      throw 'No title entered.';
     }
 
     final doc = FirebaseFirestore.instance.collection('shops').doc();
@@ -49,7 +49,8 @@ class AddShopModel extends ChangeNotifier {
           .ref('shops/${doc.id}')
           .putData(imageFile!, metadata);
       imgURL = await task.ref.getDownloadURL();
-    }
+    } else
+      throw 'No image entered.';
 
     // firestoreに追加
     await doc.set({
