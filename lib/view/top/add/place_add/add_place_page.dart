@@ -69,13 +69,7 @@ class _AddShopPage extends State<AddShopPage> {
                           ),
                           onTap: () async {
                             print("反応！");
-                            await FirebaseFirestore.instance
-                                .collection('places') // コレクションID
-                                .doc()
-                                .set({
-                              'lat': lat,
-                              'long': long,
-                            });
+
                             await model.pickImage();
                           },
                         ),
@@ -105,6 +99,15 @@ class _AddShopPage extends State<AddShopPage> {
                         ElevatedButton(
                           onPressed: () async {
                             // 追加の処理
+                            if (pin == false) {
+                              await FirebaseFirestore.instance
+                                  .collection('places') // コレクションID
+                                  .doc()
+                                  .set({
+                                'lat': lat,
+                                'long': long,
+                              });
+                            }
                             try {
                               model.electronic = _rating[0] as int;
                               model.ventilationFan = _rating[1] as int;
