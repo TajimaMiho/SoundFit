@@ -22,13 +22,17 @@ class _AddShopPage extends State<AddShopPage> {
   late final bool pin;
 
   _AddShopPage({required this.lat, required this.long, required this.pin});
-  late List<double> _rating = [0, 0, 0, 0, 0, 0];
+  late List<double> _rating = [
+    0,
+    0,
+    0,
+  ];
   double _initialRating = 0;
 
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < 6; i++) _rating[i] = _initialRating;
+    for (int i = 0; i < 3; i++) _rating[i] = _initialRating;
   }
 
   @override
@@ -89,17 +93,12 @@ class _AddShopPage extends State<AddShopPage> {
                         SizedBox(
                           height: 16,
                         ),
-                        buildevaluation(shortestSide, "cry", model.cry, 0),
                         buildevaluation(
-                            shortestSide, "electronic", model.electronic, 1),
-                        buildevaluation(shortestSide, "cashRegister",
-                            model.cashRegister, 2),
+                            shortestSide, "electronic", model.electronic, 0),
                         buildevaluation(shortestSide, "ventilationFan",
-                            model.ventilationFan, 3),
+                            model.ventilationFan, 1),
                         buildevaluation(
-                            shortestSide, "keyboard", model.keyboard, 4),
-                        buildevaluation(
-                            shortestSide, "masticatory", model.masticatory, 5),
+                            shortestSide, "masticatory", model.masticatory, 2),
                         SizedBox(
                           height: 16,
                         ),
@@ -107,12 +106,9 @@ class _AddShopPage extends State<AddShopPage> {
                           onPressed: () async {
                             // 追加の処理
                             try {
-                              model.cry = _rating[0] as int;
-                              model.electronic = _rating[1] as int;
-                              model.cashRegister = _rating[2] as int;
-                              model.ventilationFan = _rating[3] as int;
-                              model.keyboard = _rating[4] as int;
-                              model.masticatory = _rating[5] as int;
+                              model.electronic = _rating[0] as int;
+                              model.ventilationFan = _rating[1] as int;
+                              model.masticatory = _rating[2] as int;
                               model.lat = lat;
                               model.long = long;
                               model.startLoading();

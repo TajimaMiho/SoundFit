@@ -13,11 +13,8 @@ class AddShopModel extends ChangeNotifier {
   Uint8List? imageFile;
   double lat = 0;
   double long = 0;
-  int cry = 0;
   int electronic = 0;
-  int cashRegister = 0;
   int ventilationFan = 0;
-  int keyboard = 0;
   int masticatory = 0;
 
   var metadata;
@@ -56,11 +53,8 @@ class AddShopModel extends ChangeNotifier {
       'imgURL': imgURL,
       'lat': lat,
       'long': long,
-      'cry': cry,
       'electronic': electronic,
-      'cashRegister': cashRegister,
       'ventilationFan': ventilationFan,
-      'keyboard': keyboard,
       'masticatory': masticatory,
     });
   }

@@ -47,11 +47,8 @@ class ShopListPage extends StatelessWidget {
                     shortestSide,
                     shop.title,
                     shop.imgURL,
-                    shop.cry,
                     shop.electronic,
-                    shop.cashRegister,
                     shop.ventilationFan,
-                    shop.keyboard,
                     shop.masticatory))
                 .toList();
             return ListView(
@@ -76,13 +73,13 @@ class ShopListPage extends StatelessWidget {
                 ),
               );
 
-              if (added != null && added) {
+              /*if (added != null && added) {
                 final snackBar = SnackBar(
                   backgroundColor: Colors.green,
                   content: Text('席を追加しました'),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              }
+              }*/
 
               model.fetchShopList();
             },
@@ -94,16 +91,8 @@ class ShopListPage extends StatelessWidget {
     );
   }
 
-  Widget buildListItem(
-      double shortestSide,
-      String title,
-      String? imgURL,
-      int cry,
-      int electronic,
-      int cashRegister,
-      int ventilationFan,
-      int keyboard,
-      int masticatory) {
+  Widget buildListItem(double shortestSide, String title, String? imgURL,
+      int electronic, int ventilationFan, int masticatory) {
     final Image image = Image.network(imgURL!);
     return Consumer(builder: (context, ref, _) {
       return GestureDetector(
@@ -122,11 +111,8 @@ class ShopListPage extends StatelessWidget {
                 width: shortestSide / 2,
               ),
               BlackText(title, 24),
-              buildSoundDetail("cry", cry),
               buildSoundDetail("electronic", electronic),
-              buildSoundDetail("cashRegister", cashRegister),
               buildSoundDetail("ventilationFan", ventilationFan),
-              buildSoundDetail("keyboard", keyboard),
               buildSoundDetail("masticatory", masticatory),
             ],
           ),

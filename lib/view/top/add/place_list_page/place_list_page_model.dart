@@ -16,14 +16,11 @@ class ShopListModel extends ChangeNotifier {
       final String? imgURL = data['imgURL'];
       final double lat = data['lat'];
       final double long = data['long'];
-      final int cry = data['cry'];
       final int electronic = data['electronic'];
-      final int cashRegister = data['cashRegister'];
       final int ventilationFan = data['ventilationFan'];
-      final int keyboard = data['keyboard'];
       final int masticatory = data['masticatory'];
-      return Shop(id, title, imgURL, lat, long, cry, electronic, cashRegister,
-          ventilationFan, keyboard, masticatory);
+      return Shop(id, title, imgURL, lat, long, electronic, ventilationFan,
+          masticatory);
     }).toList();
 
     this.shops = shops;
