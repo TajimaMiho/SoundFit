@@ -28,6 +28,11 @@ class _AddShopPage extends State<AddShopPage> {
     0,
   ];
   double _initialRating = 0;
+  String situation = '一人で静かに過ごしたい';
+  String timezone = '昼';
+  String seatforme = '大テーブル';
+  String spacebetween = '1.0~2.0m';
+  bool isfilled = false;
 
   @override
   void initState() {
@@ -59,12 +64,32 @@ class _AddShopPage extends State<AddShopPage> {
                       children: [
                         GestureDetector(
                           child: SizedBox(
-                            width: 100,
-                            height: 160,
+                            width: 160,
+                            height: 256,
                             child: model.imageFile != null
                                 ? Image.memory(model.imageFile!)
                                 : Container(
-                                    color: Colors.grey,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          offset: Offset(1.0, 1.0),
+                                          blurRadius: 0.8,
+                                          spreadRadius: 0.8,
+                                        ),
+                                      ],
+                                      color: Colors.white,
+                                      border: Border.all(
+                                          color: Styles.secondaryColor,
+                                          width: 3),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Icon(
+                                      Icons.photo,
+                                      size: 80,
+                                      color: Styles.secondaryColor,
+                                    ),
                                   ),
                           ),
                           onTap: () async {
@@ -73,19 +98,81 @@ class _AddShopPage extends State<AddShopPage> {
                             await model.pickImage();
                           },
                         ),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: '席の位置',
+                        SizedBox(
+                          height: 48,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(1.0, 1.0),
+                                blurRadius: 0.8,
+                                spreadRadius: 0.8,
+                              ),
+                            ],
                           ),
-                          onChanged: (text) {
-                            model.title = text;
-                          },
+                          child: TextField(
+                            decoration: InputDecoration(
+                              fillColor: Colors.white,
+                              filled: true,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.blue, width: 2.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: isfilled
+                                    ? BorderSide(color: Styles.secondaryColor)
+                                    : BorderSide(color: Colors.red, width: 2.0),
+                              ),
+                              labelText: '席の位置',
+                              labelStyle: TextStyle(
+                                fontSize: 24,
+                              ),
+                            ),
+                            onChanged: (text) {
+                              if (text != null)
+                                setState(() {
+                                  isfilled = true;
+                                });
+                              else
+                                setState(() {
+                                  isfilled = false;
+                                });
+                              model.title = text;
+                            },
+                          ),
                         ),
                         SizedBox(
-                          height: 8,
+                          height: 24,
                         ),
+                        Row(children: [
+                          BlackText('時間帯 : ', 24),
+                        ]),
+                        buildtimezone(shortestSide),
                         SizedBox(
-                          height: 16,
+                          height: 24,
+                        ),
+                        Row(children: [
+                          BlackText('席の形 : ', 24),
+                        ]),
+                        buildseatform(shortestSide),
+                        SizedBox(
+                          height: 24,
+                        ),
+                        Row(children: [
+                          BlackText('隣との間隔 : ', 24),
+                        ]),
+                        buildspacebetween(shortestSide),
+                        SizedBox(
+                          height: 24,
+                        ),
+                        Row(children: [
+                          BlackText('利用客の状況 : ', 24),
+                        ]),
+                        buildsituation(shortestSide),
+                        SizedBox(
+                          height: 24,
                         ),
                         buildevaluation(
                             shortestSide, "electronic", model.electronic, 0),
@@ -96,41 +183,58 @@ class _AddShopPage extends State<AddShopPage> {
                         SizedBox(
                           height: 16,
                         ),
-                        ElevatedButton(
-                          onPressed: () async {
-                            // 追加の処理
-                            if (pin == false) {
-                              await FirebaseFirestore.instance
-                                  .collection('places') // コレクションID
-                                  .doc()
-                                  .set({
-                                'lat': lat,
-                                'long': long,
-                              });
-                            }
-                            try {
-                              model.electronic = _rating[0] as int;
-                              model.ventilationFan = _rating[1] as int;
-                              model.masticatory = _rating[2] as int;
-                              model.lat = lat;
-                              model.long = long;
-                              model.startLoading();
-                              await model.addShop();
-                              Navigator.of(context).pop(true);
-                            } catch (e) {
-                              print(e);
-                              final snackBar = SnackBar(
-                                backgroundColor: Colors.red,
-                                content: Text(e.toString()),
-                              );
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
-                            } finally {
-                              model.endLoading();
-                            }
-                          },
-                          child: Text('追加する'),
+                        Container(
+                          width: shortestSide / 2,
+                          height: shortestSide / 5,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(1.0, 1.0),
+                                blurRadius: 0.8,
+                                spreadRadius: 0.8,
+                              ),
+                            ],
+                          ),
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              // 追加の処理
+                              if (pin == false) {
+                                await FirebaseFirestore.instance
+                                    .collection('places') // コレクションID
+                                    .doc()
+                                    .set({
+                                  'lat': lat,
+                                  'long': long,
+                                });
+                              }
+                              try {
+                                model.electronic = _rating[0] as int;
+                                model.ventilationFan = _rating[1] as int;
+                                model.masticatory = _rating[2] as int;
+                                model.lat = lat;
+                                model.long = long;
+                                model.startLoading();
+                                await model.addShop();
+                                Navigator.of(context).pop(true);
+                              } catch (e) {
+                                print(e);
+                                final snackBar = SnackBar(
+                                  backgroundColor: Colors.red,
+                                  content: Text(e.toString()),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              } finally {
+                                model.endLoading();
+                              }
+                            },
+                            child: WhiteText('追加する', 24),
+                          ),
                         ),
+                        SizedBox(
+                          height: 48,
+                        )
                       ],
                     ),
                   ),
@@ -229,6 +333,186 @@ class _AddShopPage extends State<AddShopPage> {
             height: iconSize,
           )
         ],
+      ),
+    );
+  }
+
+  Widget buildsituation(double shortestSide) {
+    return Container(
+      padding: EdgeInsets.only(left: 20, right: 20),
+      alignment: Alignment.center,
+      width: shortestSide / 1.2,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(1.0, 1.0),
+            blurRadius: 0.8,
+            spreadRadius: 0.8,
+          ),
+        ],
+      ),
+      //color: Styles.secondaryTextColor,
+      child: DropdownButton(
+        isExpanded: true,
+        items: const [
+          DropdownMenuItem(
+            value: '一人で静かに過ごしたい',
+            child: BlackText('一人で静かに過ごしたい', 24),
+          ),
+          DropdownMenuItem(
+            value: '複数人でワイワイ過ごしたい',
+            child: BlackText('複数人でワイワイ過ごしたい', 24),
+          ),
+          DropdownMenuItem(
+            value: '作業や勉強に集中したい',
+            child: BlackText('作業や勉強に集中したい', 24),
+          ),
+        ],
+        value: situation,
+        onChanged: (String? value) {
+          setState(() {
+            situation = value!;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget buildtimezone(double shortestSide) {
+    return Container(
+      padding: EdgeInsets.only(left: 20, right: 20),
+      alignment: Alignment.center,
+      width: shortestSide / 1.2,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(1.0, 1.0),
+            blurRadius: 0.8,
+            spreadRadius: 0.8,
+          ),
+        ],
+      ),
+      //color: Styles.secondaryTextColor,
+      child: DropdownButton(
+        isExpanded: true,
+        items: const [
+          DropdownMenuItem(
+            value: '朝',
+            child: BlackText('朝', 24),
+          ),
+          DropdownMenuItem(
+            value: '昼',
+            child: BlackText('昼', 24),
+          ),
+          DropdownMenuItem(
+            value: '晩',
+            child: BlackText('晩', 24),
+          ),
+        ],
+        value: timezone,
+        onChanged: (String? value) {
+          setState(() {
+            timezone = value!;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget buildseatform(double shortestSide) {
+    return Container(
+      padding: EdgeInsets.only(left: 20, right: 20),
+      alignment: Alignment.center,
+      width: shortestSide / 1.2,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(1.0, 1.0),
+            blurRadius: 0.8,
+            spreadRadius: 0.8,
+          ),
+        ],
+      ),
+      //color: Styles.secondaryTextColor,
+      child: DropdownButton(
+        isExpanded: true,
+        items: const [
+          DropdownMenuItem(
+            value: '大テーブル',
+            child: BlackText('大テーブル', 24),
+          ),
+          DropdownMenuItem(
+            value: 'カウンター',
+            child: BlackText('カウンター', 24),
+          ),
+          DropdownMenuItem(
+            value: 'ボックス席',
+            child: BlackText('ボックス席', 24),
+          ),
+          DropdownMenuItem(
+            value: '個室',
+            child: BlackText('個室', 24),
+          ),
+        ],
+        value: seatforme,
+        onChanged: (String? value) {
+          setState(() {
+            seatforme = value!;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget buildspacebetween(double shortestSide) {
+    return Container(
+      padding: EdgeInsets.only(left: 20, right: 20),
+      alignment: Alignment.center,
+      width: shortestSide / 1.2,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(1.0, 1.0),
+            blurRadius: 0.8,
+            spreadRadius: 0.8,
+          ),
+        ],
+      ),
+      //color: Styles.secondaryTextColor,
+      child: DropdownButton(
+        isExpanded: true,
+        items: const [
+          DropdownMenuItem(
+            value: 'less than 1.0m',
+            child: BlackText('less than 1.0m', 24),
+          ),
+          DropdownMenuItem(
+            value: '1.0~2.0m',
+            child: BlackText('1.0~2.0m', 24),
+          ),
+          DropdownMenuItem(
+            value: '2.0~3.0m',
+            child: BlackText('2.0~3.0m', 24),
+          ),
+          DropdownMenuItem(
+            value: 'more than 3.0m',
+            child: BlackText('more than 3.0m', 24),
+          ),
+        ],
+        value: spacebetween,
+        onChanged: (String? value) {
+          setState(() {
+            spacebetween = value!;
+          });
+        },
       ),
     );
   }
