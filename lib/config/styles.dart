@@ -29,6 +29,7 @@ abstract class Styles {
   static const Color appBarTitleColor = pageBackground;
   static const Color commonTextColor = Color(0xFF000000);
   static const Color secondaryTextColor = Color(0xFFFFFFFF);
+  static const Color errorColor = Color.fromARGB(255, 154, 24, 24);
   static AppBarTheme appBarTheme = AppBarTheme(
     centerTitle: true,
     backgroundColor: Styles.primaryColor,

@@ -16,6 +16,10 @@ class AddShopModel extends ChangeNotifier {
   int electronic = 0;
   int ventilationFan = 0;
   int masticatory = 0;
+  String? situation;
+  String? timezone;
+  String? seatforme;
+  String? spacebetween;
 
   var metadata;
 
@@ -33,7 +37,7 @@ class AddShopModel extends ChangeNotifier {
 
   Future addShop() async {
     if (title == null || title == "") {
-      throw 'タイトルが入力されていません';
+      throw 'No title entered.';
     }
 
     final doc = FirebaseFirestore.instance.collection('shops').doc();
@@ -45,7 +49,8 @@ class AddShopModel extends ChangeNotifier {
           .ref('shops/${doc.id}')
           .putData(imageFile!, metadata);
       imgURL = await task.ref.getDownloadURL();
-    }
+    } else
+      throw 'No image entered.';
 
     // firestoreに追加
     await doc.set({
@@ -56,6 +61,10 @@ class AddShopModel extends ChangeNotifier {
       'electronic': electronic,
       'ventilationFan': ventilationFan,
       'masticatory': masticatory,
+      'situation': situation,
+      'timezone': timezone,
+      'seatforme': seatforme,
+      'spacebetween': spacebetween,
     });
   }
 
