@@ -123,10 +123,20 @@ class ShopListPage extends StatelessWidget {
                 imgURL,
                 width: shortestSide / 2,
               ),
-              BlackText(title, 24),
+              SizedBox(
+                height: 12,
+              ),
+              BlackText(situation, 24),
+              buildSeatDetail("時間帯", timezone),
+              buildSeatDetail("隣の間隔", spacebetween),
+              buildSeatDetail("席の位置", title),
+              buildSeatDetail("席の形", seatforme),
               buildSoundDetail("electronic", electronic),
               buildSoundDetail("ventilationFan", ventilationFan),
               buildSoundDetail("masticatory", masticatory),
+              SizedBox(
+                height: 12,
+              ),
             ],
           ),
         ),
@@ -154,6 +164,19 @@ class ShopListPage extends StatelessWidget {
                               ? Icon(Icons.sentiment_very_dissatisfied,
                                   color: Colors.red)
                               : Icon(Icons.question_mark)
+        ],
+      ),
+    );
+  }
+
+  Widget buildSeatDetail(String content, String content_d) {
+    return Container(
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          BlackText(content, 24),
+          BlackText(content_d, 24),
         ],
       ),
     );

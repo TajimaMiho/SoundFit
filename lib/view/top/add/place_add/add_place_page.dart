@@ -74,7 +74,7 @@ class _AddShopPage extends State<AddShopPage> {
                                     decoration: BoxDecoration(
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Styles.primaryColor,
+                                          color: Styles.secondaryColor,
                                           offset: Offset(1.0, 1.0),
                                           blurRadius: 0.8,
                                           spreadRadius: 0.8,
@@ -82,8 +82,7 @@ class _AddShopPage extends State<AddShopPage> {
                                       ],
                                       color: Colors.white,
                                       border: Border.all(
-                                          color: Styles.secondaryColor,
-                                          width: 3),
+                                          color: Styles.primaryColor, width: 3),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Icon(
@@ -124,7 +123,8 @@ class _AddShopPage extends State<AddShopPage> {
                               enabledBorder: OutlineInputBorder(
                                 borderSide: isfilled
                                     ? BorderSide(color: Styles.secondaryColor)
-                                    : BorderSide(color: Colors.red, width: 2.0),
+                                    : BorderSide(
+                                        color: Styles.errorColor, width: 2.5),
                               ),
                               labelText: '席の位置',
                               labelStyle: TextStyle(
@@ -226,7 +226,7 @@ class _AddShopPage extends State<AddShopPage> {
                               } catch (e) {
                                 print(e);
                                 final snackBar = SnackBar(
-                                  backgroundColor: Colors.red,
+                                  backgroundColor: Styles.errorColor,
                                   content: Text(e.toString()),
                                 );
                                 ScaffoldMessenger.of(context)
