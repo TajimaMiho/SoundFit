@@ -19,6 +19,7 @@ class AddShopModel extends ChangeNotifier {
   String? situation;
   String? timezone;
   String? seatforme;
+  String? useremail;
 
   var metadata;
 
