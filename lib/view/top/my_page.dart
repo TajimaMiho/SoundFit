@@ -18,7 +18,7 @@ class ConfigPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'アカウント',
+          'Account',
           style: TextStyle(color: Colors.white),
         ),
       ),

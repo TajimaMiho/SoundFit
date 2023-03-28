@@ -48,7 +48,7 @@ class _AddShopPage extends State<AddShopPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'お店を追加',
+            'Add a place',
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -218,7 +218,7 @@ class _AddShopPage extends State<AddShopPage> {
                                 model.endLoading();
                               }
                             },
-                            child: WhiteText('追加する', 24),
+                            child: WhiteText('Add!', 24),
                           ),
                         ),
                         SizedBox(
