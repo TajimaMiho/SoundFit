@@ -11,7 +11,6 @@ class Shop {
     this.situation,
     this.timezone,
     this.seatforme,
-    this.spacebetween,
   );
   String id;
   String title;
@@ -24,5 +23,4 @@ class Shop {
   String situation;
   String timezone;
   String seatforme;
-  String spacebetween;
 }

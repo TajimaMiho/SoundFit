@@ -22,8 +22,9 @@ class LoginPage extends ConsumerWidget {
               Border(bottom: BorderSide(color: Styles.primaryColor, width: 3)),
           backgroundColor: Colors.white,
           title: isLoginMode
-              ? const Text('ログイン', style: TextStyle(color: Styles.primaryColor))
-              : const Text('新規登録',
+              ? const Text('Sigin in',
+                  style: TextStyle(color: Styles.primaryColor))
+              : const Text('Create an account.',
                   style: TextStyle(color: Styles.primaryColor))),
       body: Center(
         child: Container(
@@ -32,13 +33,13 @@ class LoginPage extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextFormField(
-                decoration: const InputDecoration(labelText: 'メールアドレス'),
+                decoration: const InputDecoration(labelText: 'email address'),
                 onChanged: (String value) {
                   ref.read(loginProvider.notifier).changeEmail(value);
                 },
               ),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'パスワード'),
+                decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 onChanged: (String value) {
                   ref.read(loginProvider.notifier).changePassword(value);
@@ -47,7 +48,7 @@ class LoginPage extends ConsumerWidget {
               isLoginMode
                   ? const SizedBox()
                   : TextFormField(
-                      decoration: const InputDecoration(labelText: '名前'),
+                      decoration: const InputDecoration(labelText: 'Your name'),
                       onChanged: (String value) {
                         ref.read(loginProvider.notifier).changeName(value);
                       },
@@ -60,7 +61,7 @@ class LoginPage extends ConsumerWidget {
                   ? SizedBox(
                       width: double.infinity,
                       child: OutlinedButton(
-                        child: const Text('ログイン'),
+                        child: const Text('Sign in'),
                         onPressed: () async {
                           try {
                             final FirebaseAuth auth = FirebaseAuth.instance;
@@ -74,9 +75,8 @@ class LoginPage extends ConsumerWidget {
                             ref.read(loginProvider.notifier).changeUser(
                                 FirebaseAuth.instance.currentUser!.email!);
                           } catch (e) {
-                            ref
-                                .read(loginProvider.notifier)
-                                .changeInfoText("ログインに失敗しました：${e.toString()}");
+                            ref.read(loginProvider.notifier).changeInfoText(
+                                "Sign-in failed.：${e.toString()}");
                           }
                         },
                       ),
@@ -84,7 +84,7 @@ class LoginPage extends ConsumerWidget {
                   : SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        child: const Text('ユーザー登録'),
+                        child: const Text('Create an account.'),
                         onPressed: () async {
                           try {
                             final FirebaseAuth auth = FirebaseAuth.instance;
@@ -106,15 +106,14 @@ class LoginPage extends ConsumerWidget {
                                 .doc(result.user
                                     ?.email) // ドキュメントID << usersコレクション内のドキュメント
                                 .set({
-                              'name': name.isEmpty ? '名前未設定' : name,
+                              'name': name.isEmpty ? 'unnamed' : name,
                               'date': DateTime.now().toLocal().toIso8601String()
                             });
                             ref.read(loginProvider.notifier).changeMode(true);
                             ref.read(loginProvider.notifier).changeName('');
                           } catch (e) {
-                            ref
-                                .read(loginProvider.notifier)
-                                .changeInfoText("登録に失敗しました：${e.toString()}");
+                            ref.read(loginProvider.notifier).changeInfoText(
+                                "Sign-in failed.: ${e.toString()}");
                           }
                         },
                       ),
@@ -127,14 +126,14 @@ class LoginPage extends ConsumerWidget {
                   ? SizedBox(
                       width: double.infinity,
                       child: TextButton(
-                          child: const Text('新規登録はこちら'),
+                          child: const Text('Create an account.'),
                           onPressed: () async {
                             ref.read(loginProvider.notifier).changeMode(false);
                           }))
                   : SizedBox(
                       width: double.infinity,
                       child: TextButton(
-                          child: const Text('ログイン'),
+                          child: const Text('Sign in'),
                           onPressed: () async {
                             ref.read(loginProvider.notifier).changeMode(true);
                           })),

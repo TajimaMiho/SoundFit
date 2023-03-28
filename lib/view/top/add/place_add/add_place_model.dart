@@ -19,7 +19,6 @@ class AddShopModel extends ChangeNotifier {
   String? situation;
   String? timezone;
   String? seatforme;
-  String? spacebetween;
 
   var metadata;
 
@@ -64,7 +63,6 @@ class AddShopModel extends ChangeNotifier {
       'situation': situation,
       'timezone': timezone,
       'seatforme': seatforme,
-      'spacebetween': spacebetween,
     });
   }
 

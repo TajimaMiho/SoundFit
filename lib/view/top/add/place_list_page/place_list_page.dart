@@ -52,8 +52,7 @@ class ShopListPage extends StatelessWidget {
                     shop.masticatory,
                     shop.situation,
                     shop.timezone,
-                    shop.seatforme,
-                    shop.spacebetween))
+                    shop.seatforme))
                 .toList();
             return ListView(
               children: widgets,
@@ -96,22 +95,22 @@ class ShopListPage extends StatelessWidget {
   }
 
   Widget buildListItem(
-      double shortestSide,
-      String title,
-      String? imgURL,
-      int electronic,
-      int ventilationFan,
-      int masticatory,
-      String situation,
-      String timezone,
-      String seatforme,
-      String spacebetween) {
+    double shortestSide,
+    String title,
+    String? imgURL,
+    int electronic,
+    int ventilationFan,
+    int masticatory,
+    String situation,
+    String timezone,
+    String seatforme,
+  ) {
     final Image image = Image.network(imgURL!);
     return Consumer(builder: (context, ref, _) {
       return GestureDetector(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
-          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
@@ -126,14 +125,13 @@ class ShopListPage extends StatelessWidget {
               SizedBox(
                 height: 12,
               ),
-              BlackText(situation, 24),
-              buildSeatDetail("時間帯", timezone),
-              buildSeatDetail("隣の間隔", spacebetween),
-              buildSeatDetail("席の位置", title),
-              buildSeatDetail("席の形", seatforme),
-              buildSoundDetail("electronic", electronic),
-              buildSoundDetail("ventilationFan", ventilationFan),
-              buildSoundDetail("masticatory", masticatory),
+              buildSeatDetail("Purpose", situation),
+              buildSeatDetail("Time of visit", timezone),
+              buildSeatDetail("Location", title),
+              buildSeatDetail("Seating", seatforme),
+              buildSoundDetail("Electronic sounds", electronic),
+              buildSoundDetail("Fan noise", ventilationFan),
+              buildSoundDetail("Chewing sound", masticatory),
               SizedBox(
                 height: 12,
               ),
@@ -150,7 +148,7 @@ class ShopListPage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          BlackText(shoJyoNm, 24),
+          BlackText(shoJyoNm, 20),
           react == 0
               ? Icon(Icons.sentiment_very_satisfied, color: Colors.green)
               : react == 1
@@ -175,8 +173,8 @@ class ShopListPage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          BlackText(content, 24),
-          BlackText(content_d, 24),
+          BlackText(content, 20),
+          BlackText(content_d, 20),
         ],
       ),
     );

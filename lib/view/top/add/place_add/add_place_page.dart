@@ -28,10 +28,9 @@ class _AddShopPage extends State<AddShopPage> {
     0,
   ];
   double _initialRating = 0;
-  String situation = '一人で静かに過ごしたい';
-  String timezone = '昼';
-  String seatforme = '大テーブル';
-  String spacebetween = '1.0~2.0m';
+  String situation = 'Alone to relax';
+  String timezone = 'Lunch(11:00~14:00)';
+  String seatforme = 'Booth';
   bool isfilled = false;
 
   @override
@@ -101,86 +100,71 @@ class _AddShopPage extends State<AddShopPage> {
                         SizedBox(
                           height: 48,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                offset: Offset(1.0, 1.0),
-                                blurRadius: 0.8,
-                                spreadRadius: 0.8,
-                              ),
-                            ],
-                          ),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              filled: true,
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.blue, width: 2.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: isfilled
-                                    ? BorderSide(color: Styles.secondaryColor)
-                                    : BorderSide(
-                                        color: Styles.errorColor, width: 2.5),
-                              ),
-                              labelText: '席の位置',
-                              labelStyle: TextStyle(
-                                fontSize: 24,
-                              ),
+                        TextField(
+                          maxLength: 20,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.blue, width: 2.0),
                             ),
-                            onChanged: (text) {
-                              if (text != null)
-                                setState(() {
-                                  isfilled = true;
-                                });
-                              else
-                                setState(() {
-                                  isfilled = false;
-                                });
-                              model.title = text;
-                            },
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: isfilled
+                                  ? BorderSide(color: Styles.secondaryColor)
+                                  : BorderSide(
+                                      color: Styles.errorColor, width: 2.5),
+                            ),
+                            labelText: 'Location',
+                            labelStyle: TextStyle(
+                              fontSize: 24,
+                            ),
                           ),
+                          onChanged: (text) {
+                            if (text != null)
+                              setState(() {
+                                isfilled = true;
+                              });
+                            else
+                              setState(() {
+                                isfilled = false;
+                              });
+                            model.title = text;
+                          },
                         ),
                         SizedBox(
                           height: 24,
                         ),
                         Row(children: [
-                          BlackText('時間帯 : ', 24),
+                          BlackText('Time of visit : ', 24),
                         ]),
+                        SizedBox(height: 5),
                         buildtimezone(shortestSide),
                         SizedBox(
                           height: 24,
                         ),
                         Row(children: [
-                          BlackText('席の形 : ', 24),
+                          BlackText('Seating : ', 24),
                         ]),
+                        SizedBox(height: 5),
                         buildseatform(shortestSide),
                         SizedBox(
                           height: 24,
                         ),
                         Row(children: [
-                          BlackText('隣との間隔 : ', 24),
+                          BlackText('Purpose : ', 24),
                         ]),
-                        buildspacebetween(shortestSide),
-                        SizedBox(
-                          height: 24,
-                        ),
-                        Row(children: [
-                          BlackText('利用客の状況 : ', 24),
-                        ]),
+                        SizedBox(height: 5),
                         buildsituation(shortestSide),
                         SizedBox(
-                          height: 24,
+                          height: 48,
                         ),
+                        buildevaluation(shortestSide, "Electronic sounds",
+                            model.electronic, 0),
                         buildevaluation(
-                            shortestSide, "electronic", model.electronic, 0),
-                        buildevaluation(shortestSide, "ventilationFan",
-                            model.ventilationFan, 1),
-                        buildevaluation(
-                            shortestSide, "masticatory", model.masticatory, 2),
+                            shortestSide, "Fan noise", model.ventilationFan, 1),
+                        buildevaluation(shortestSide, "Chewing sound",
+                            model.masticatory, 2),
                         SizedBox(
                           height: 16,
                         ),
@@ -219,7 +203,6 @@ class _AddShopPage extends State<AddShopPage> {
                                 model.situation = situation;
                                 model.timezone = timezone;
                                 model.seatforme = seatforme;
-                                model.spacebetween = spacebetween;
                                 model.startLoading();
                                 await model.addShop();
                                 Navigator.of(context).pop(true);
@@ -268,7 +251,7 @@ class _AddShopPage extends State<AddShopPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BlackText(sound, 36),
+          BlackText(sound, 24),
           Row(
             children: [
               IconButton(
@@ -364,16 +347,20 @@ class _AddShopPage extends State<AddShopPage> {
         isExpanded: true,
         items: const [
           DropdownMenuItem(
-            value: '一人で静かに過ごしたい',
-            child: BlackText('一人で静かに過ごしたい', 24),
+            value: 'Alone to relax',
+            child: BlackText('Alone to relax', 24),
           ),
           DropdownMenuItem(
-            value: '複数人でワイワイ過ごしたい',
-            child: BlackText('複数人でワイワイ過ごしたい', 24),
+            value: 'Study ',
+            child: BlackText('Study ', 24),
           ),
           DropdownMenuItem(
-            value: '作業や勉強に集中したい',
-            child: BlackText('作業や勉強に集中したい', 24),
+            value: 'With family/kids',
+            child: BlackText('With family/kids', 24),
+          ),
+          DropdownMenuItem(
+            value: 'With friends/co-workers',
+            child: BlackText('With friends/co-workers', 24),
           ),
         ],
         value: situation,
@@ -407,16 +394,28 @@ class _AddShopPage extends State<AddShopPage> {
         isExpanded: true,
         items: const [
           DropdownMenuItem(
-            value: '朝',
-            child: BlackText('朝', 24),
+            value: 'Morning(7:00~11:00)',
+            child: BlackText('Morning(7:00~11:00)', 24),
           ),
           DropdownMenuItem(
-            value: '昼',
-            child: BlackText('昼', 24),
+            value: 'Lunch(11:00~14:00)',
+            child: BlackText('Lunch(11:00~14:00)', 24),
           ),
           DropdownMenuItem(
-            value: '晩',
-            child: BlackText('晩', 24),
+            value: 'Evening(14:00~18:00)',
+            child: BlackText('Evening(14:00~18:00)', 24),
+          ),
+          DropdownMenuItem(
+            value: 'Dinner(18:00~22:00)',
+            child: BlackText('Dinner(18:00~22:00)', 24),
+          ),
+          DropdownMenuItem(
+            value: 'Late night(22:00~24:00)',
+            child: BlackText('Late night(22:00~24:00)', 24),
+          ),
+          DropdownMenuItem(
+            value: 'All day',
+            child: BlackText('All day', 24),
           ),
         ],
         value: timezone,
@@ -450,73 +449,30 @@ class _AddShopPage extends State<AddShopPage> {
         isExpanded: true,
         items: const [
           DropdownMenuItem(
-            value: '大テーブル',
-            child: BlackText('大テーブル', 24),
+            value: 'Booth',
+            child: BlackText('Booth', 24),
           ),
           DropdownMenuItem(
-            value: 'カウンター',
-            child: BlackText('カウンター', 24),
+            value: 'Loose',
+            child: BlackText('Loose', 24),
           ),
           DropdownMenuItem(
-            value: 'ボックス席',
-            child: BlackText('ボックス席', 24),
+            value: 'Bench',
+            child: BlackText('Bench', 24),
           ),
           DropdownMenuItem(
-            value: '個室',
-            child: BlackText('個室', 24),
+            value: 'Counter',
+            child: BlackText('Counter', 24),
+          ),
+          DropdownMenuItem(
+            value: 'Private room',
+            child: BlackText('Private room', 24),
           ),
         ],
         value: seatforme,
         onChanged: (String? value) {
           setState(() {
             seatforme = value!;
-          });
-        },
-      ),
-    );
-  }
-
-  Widget buildspacebetween(double shortestSide) {
-    return Container(
-      padding: EdgeInsets.only(left: 20, right: 20),
-      alignment: Alignment.center,
-      width: shortestSide / 1.2,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            offset: Offset(1.0, 1.0),
-            blurRadius: 0.8,
-            spreadRadius: 0.8,
-          ),
-        ],
-      ),
-      //color: Styles.secondaryTextColor,
-      child: DropdownButton(
-        isExpanded: true,
-        items: const [
-          DropdownMenuItem(
-            value: 'less than 1.0m',
-            child: BlackText('less than 1.0m', 24),
-          ),
-          DropdownMenuItem(
-            value: '1.0~2.0m',
-            child: BlackText('1.0~2.0m', 24),
-          ),
-          DropdownMenuItem(
-            value: '2.0~3.0m',
-            child: BlackText('2.0~3.0m', 24),
-          ),
-          DropdownMenuItem(
-            value: 'more than 3.0m',
-            child: BlackText('more than 3.0m', 24),
-          ),
-        ],
-        value: spacebetween,
-        onChanged: (String? value) {
-          setState(() {
-            spacebetween = value!;
           });
         },
       ),

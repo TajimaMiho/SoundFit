@@ -1,4 +1,4 @@
-class Shop {
+/*class Shop {
   Shop(
       this.id,
       this.title,
@@ -22,4 +22,4 @@ class Shop {
   int ventilationFan;
   int keyboard;
   int masticatory;
-}
+}*/
