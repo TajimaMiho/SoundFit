@@ -31,6 +31,15 @@ class ConfigPage extends ConsumerWidget {
               height: 20,
             ),
             buildNameBand(shortestSide, account),
+            Expanded(
+              child: ListView(
+                children: <Widget>[
+                  Text('Item 1'),
+                  Text('Item 2'),
+                  Text('Item 3'),
+                ],
+              ),
+            ),
           ],
         ),
       ),
