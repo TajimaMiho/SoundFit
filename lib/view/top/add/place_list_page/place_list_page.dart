@@ -27,7 +27,7 @@ class ShopListPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            '席一覧',
+            'Seat List',
             style: TextStyle(color: Colors.white),
           ),
         ),

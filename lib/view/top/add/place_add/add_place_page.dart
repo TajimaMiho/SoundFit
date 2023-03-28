@@ -48,7 +48,7 @@ class _AddShopPage extends State<AddShopPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Add a place',
+            'Add a seat',
             style: TextStyle(color: Colors.white),
           ),
         ),
