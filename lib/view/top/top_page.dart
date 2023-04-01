@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mycloud/models/place/place_model.dart';
 import 'package:mycloud/provider/markers/markers_provider.dart';
 import 'package:mycloud/provider/place_model/place_model_provider.dart';
-import 'package:mycloud/service/will_pop_call_back.dart';
 
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:mycloud/view/top/add/place_list_page/place_list_page.dart';
-import 'package:provider/provider.dart';
+import 'package:mycloud/view/top/add/places_page/places_page.dart';
 
 class TopPage extends ConsumerWidget {
   Completer<GoogleMapController> _controller = Completer();

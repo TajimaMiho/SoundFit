@@ -1,14 +1,8 @@
-/*import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mycloud/config/constants.dart';
 import 'package:mycloud/config/them_text.dart';
-import 'package:mycloud/models/place/place_list.dart';
-import 'package:mycloud/view/top/add/place_detail/place_detail.dart';
-import 'package:mycloud/view/top/add/place_list_page/place_list_page_model.dart';
-import 'package:mycloud/view/top/add/place_add/add_place_page.dart';
-import 'package:provider/provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mycloud/provider/place_detail/place_detail_provider.dart';
 
 class ShopListPage extends StatelessWidget {
   final String shoptitle;
@@ -22,27 +16,26 @@ class ShopListPage extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     bool pin = false;
     double shortestSide = size.shortestSide;
-    return ChangeNotifierProvider<ShopListModel>(
-      create: (_) => ShopListModel()..fetchShopList(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Seat List',
-            style: TextStyle(color: Colors.white),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Seat List',
+          style: TextStyle(color: Colors.white),
         ),
-        body: Center(
-          child: Consumer<ShopListModel>(builder: (context, model, child) {
-            final List<Shop>? shops = model.shops;
-
+      ),
+      body: Center(
+        child: Consumer(
+          builder: (context, ref, _) {
+            final shops = ref.watch(placeDetailProvider);
             if (shops == null) {
               return CircularProgressIndicator();
             }
-
-            final filteredShops = shops.where((shop) => (lat == shop.lat));
-            if (filteredShops == null) pin = true;
-
-            final List<Widget> widgets = filteredShops
+            //final filteredShops = shops.where((shop) => (lat == shop.lat));
+            if (shops == null) pin = true;
+            print('////////////////////////////');
+            print(shops);
+            print('////////////////////////////');
+            final List<Widget> widgets = shops
                 .map((shop) => buildListItem(
                     shortestSide,
                     shop.title,
@@ -57,39 +50,8 @@ class ShopListPage extends StatelessWidget {
             return ListView(
               children: widgets,
             );
-          }),
+          },
         ),
-        floatingActionButton:
-            Consumer<ShopListModel>(builder: (context, model, child) {
-          return FloatingActionButton(
-            onPressed: () async {
-              // 画面遷移
-              final bool? added = await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddShopPage(
-                    lat: lat,
-                    long: long,
-                    pin: pin,
-                  ),
-                  fullscreenDialog: true,
-                ),
-              );
-
-              /*if (added != null && added) {
-                final snackBar = SnackBar(
-                  backgroundColor: Colors.green,
-                  content: Text('席を追加しました'),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              }*/
-
-              model.fetchShopList();
-            },
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
-          );
-        }),
       ),
     );
   }
@@ -179,4 +141,4 @@ class ShopListPage extends StatelessWidget {
       ),
     );
   }
-}*/
+}

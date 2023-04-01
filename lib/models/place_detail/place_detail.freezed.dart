@@ -20,9 +20,17 @@ PlaceDetail _$PlaceDetailFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PlaceDetail {
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get author => throw _privateConstructorUsedError;
   String get imgURL => throw _privateConstructorUsedError;
+  double get lat => throw _privateConstructorUsedError;
+  double get long => throw _privateConstructorUsedError;
+  int get electronic => throw _privateConstructorUsedError;
+  int get ventilationFan => throw _privateConstructorUsedError;
+  int get masticatory => throw _privateConstructorUsedError;
+  String get timezone => throw _privateConstructorUsedError;
+  String get situation => throw _privateConstructorUsedError;
+  String get seatforme => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +44,18 @@ abstract class $PlaceDetailCopyWith<$Res> {
           PlaceDetail value, $Res Function(PlaceDetail) then) =
       _$PlaceDetailCopyWithImpl<$Res, PlaceDetail>;
   @useResult
-  $Res call({String title, String author, String imgURL});
+  $Res call(
+      {String id,
+      String title,
+      String imgURL,
+      double lat,
+      double long,
+      int electronic,
+      int ventilationFan,
+      int masticatory,
+      String timezone,
+      String situation,
+      String seatforme});
 }
 
 /// @nodoc
@@ -52,22 +71,62 @@ class _$PlaceDetailCopyWithImpl<$Res, $Val extends PlaceDetail>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
-    Object? author = null,
     Object? imgURL = null,
+    Object? lat = null,
+    Object? long = null,
+    Object? electronic = null,
+    Object? ventilationFan = null,
+    Object? masticatory = null,
+    Object? timezone = null,
+    Object? situation = null,
+    Object? seatforme = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      author: null == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String,
       imgURL: null == imgURL
           ? _value.imgURL
           : imgURL // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double,
+      long: null == long
+          ? _value.long
+          : long // ignore: cast_nullable_to_non_nullable
+              as double,
+      electronic: null == electronic
+          ? _value.electronic
+          : electronic // ignore: cast_nullable_to_non_nullable
+              as int,
+      ventilationFan: null == ventilationFan
+          ? _value.ventilationFan
+          : ventilationFan // ignore: cast_nullable_to_non_nullable
+              as int,
+      masticatory: null == masticatory
+          ? _value.masticatory
+          : masticatory // ignore: cast_nullable_to_non_nullable
+              as int,
+      timezone: null == timezone
+          ? _value.timezone
+          : timezone // ignore: cast_nullable_to_non_nullable
+              as String,
+      situation: null == situation
+          ? _value.situation
+          : situation // ignore: cast_nullable_to_non_nullable
+              as String,
+      seatforme: null == seatforme
+          ? _value.seatforme
+          : seatforme // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -81,7 +140,18 @@ abstract class _$$_PlaceDetailCopyWith<$Res>
       __$$_PlaceDetailCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String author, String imgURL});
+  $Res call(
+      {String id,
+      String title,
+      String imgURL,
+      double lat,
+      double long,
+      int electronic,
+      int ventilationFan,
+      int masticatory,
+      String timezone,
+      String situation,
+      String seatforme});
 }
 
 /// @nodoc
@@ -95,22 +165,62 @@ class __$$_PlaceDetailCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
-    Object? author = null,
     Object? imgURL = null,
+    Object? lat = null,
+    Object? long = null,
+    Object? electronic = null,
+    Object? ventilationFan = null,
+    Object? masticatory = null,
+    Object? timezone = null,
+    Object? situation = null,
+    Object? seatforme = null,
   }) {
     return _then(_$_PlaceDetail(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      author: null == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String,
       imgURL: null == imgURL
           ? _value.imgURL
           : imgURL // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double,
+      long: null == long
+          ? _value.long
+          : long // ignore: cast_nullable_to_non_nullable
+              as double,
+      electronic: null == electronic
+          ? _value.electronic
+          : electronic // ignore: cast_nullable_to_non_nullable
+              as int,
+      ventilationFan: null == ventilationFan
+          ? _value.ventilationFan
+          : ventilationFan // ignore: cast_nullable_to_non_nullable
+              as int,
+      masticatory: null == masticatory
+          ? _value.masticatory
+          : masticatory // ignore: cast_nullable_to_non_nullable
+              as int,
+      timezone: null == timezone
+          ? _value.timezone
+          : timezone // ignore: cast_nullable_to_non_nullable
+              as String,
+      situation: null == situation
+          ? _value.situation
+          : situation // ignore: cast_nullable_to_non_nullable
+              as String,
+      seatforme: null == seatforme
+          ? _value.seatforme
+          : seatforme // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -120,24 +230,59 @@ class __$$_PlaceDetailCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_PlaceDetail implements _PlaceDetail {
-  const _$_PlaceDetail({this.title = '', this.author = '', this.imgURL = ''});
+  const _$_PlaceDetail(
+      {this.id = '',
+      this.title = '',
+      this.imgURL = '',
+      this.lat = 0,
+      this.long = 0,
+      this.electronic = 0,
+      this.ventilationFan = 0,
+      this.masticatory = 0,
+      this.timezone = '',
+      this.situation = '',
+      this.seatforme = ''});
 
   factory _$_PlaceDetail.fromJson(Map<String, dynamic> json) =>
       _$$_PlaceDetailFromJson(json);
 
   @override
   @JsonKey()
+  final String id;
+  @override
+  @JsonKey()
   final String title;
   @override
   @JsonKey()
-  final String author;
+  final String imgURL;
   @override
   @JsonKey()
-  final String imgURL;
+  final double lat;
+  @override
+  @JsonKey()
+  final double long;
+  @override
+  @JsonKey()
+  final int electronic;
+  @override
+  @JsonKey()
+  final int ventilationFan;
+  @override
+  @JsonKey()
+  final int masticatory;
+  @override
+  @JsonKey()
+  final String timezone;
+  @override
+  @JsonKey()
+  final String situation;
+  @override
+  @JsonKey()
+  final String seatforme;
 
   @override
   String toString() {
-    return 'PlaceDetail(title: $title, author: $author, imgURL: $imgURL)';
+    return 'PlaceDetail(id: $id, title: $title, imgURL: $imgURL, lat: $lat, long: $long, electronic: $electronic, ventilationFan: $ventilationFan, masticatory: $masticatory, timezone: $timezone, situation: $situation, seatforme: $seatforme)';
   }
 
   @override
@@ -145,14 +290,29 @@ class _$_PlaceDetail implements _PlaceDetail {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PlaceDetail &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.author, author) || other.author == author) &&
-            (identical(other.imgURL, imgURL) || other.imgURL == imgURL));
+            (identical(other.imgURL, imgURL) || other.imgURL == imgURL) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.long, long) || other.long == long) &&
+            (identical(other.electronic, electronic) ||
+                other.electronic == electronic) &&
+            (identical(other.ventilationFan, ventilationFan) ||
+                other.ventilationFan == ventilationFan) &&
+            (identical(other.masticatory, masticatory) ||
+                other.masticatory == masticatory) &&
+            (identical(other.timezone, timezone) ||
+                other.timezone == timezone) &&
+            (identical(other.situation, situation) ||
+                other.situation == situation) &&
+            (identical(other.seatforme, seatforme) ||
+                other.seatforme == seatforme));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, author, imgURL);
+  int get hashCode => Object.hash(runtimeType, id, title, imgURL, lat, long,
+      electronic, ventilationFan, masticatory, timezone, situation, seatforme);
 
   @JsonKey(ignore: true)
   @override
@@ -170,19 +330,43 @@ class _$_PlaceDetail implements _PlaceDetail {
 
 abstract class _PlaceDetail implements PlaceDetail {
   const factory _PlaceDetail(
-      {final String title,
-      final String author,
-      final String imgURL}) = _$_PlaceDetail;
+      {final String id,
+      final String title,
+      final String imgURL,
+      final double lat,
+      final double long,
+      final int electronic,
+      final int ventilationFan,
+      final int masticatory,
+      final String timezone,
+      final String situation,
+      final String seatforme}) = _$_PlaceDetail;
 
   factory _PlaceDetail.fromJson(Map<String, dynamic> json) =
       _$_PlaceDetail.fromJson;
 
   @override
+  String get id;
+  @override
   String get title;
   @override
-  String get author;
-  @override
   String get imgURL;
+  @override
+  double get lat;
+  @override
+  double get long;
+  @override
+  int get electronic;
+  @override
+  int get ventilationFan;
+  @override
+  int get masticatory;
+  @override
+  String get timezone;
+  @override
+  String get situation;
+  @override
+  String get seatforme;
   @override
   @JsonKey(ignore: true)
   _$$_PlaceDetailCopyWith<_$_PlaceDetail> get copyWith =>
