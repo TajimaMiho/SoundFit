@@ -1,5 +1,7 @@
 # SoundFit
 # English
+## Rink for the app
+https://mycloud-ca320.web.app/#/
 ## Configuring APIs on the Google Maps Platform
 To use Google Maps within your Flutter app, you will need to set up an API project with the [Google Maps Platform](https://cloud.google.com/maps-platform/?hl=ja) .
 Follow the instructions in [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/get-api-key?hl=ja).
@@ -11,6 +13,8 @@ Follow the instructions in [Maps JavaScript API](https://developers.google.com/m
 4. If a screen appears requesting access to googleMap, you have succeeded!
 
 # Japanese
+## アプリのリンク
+https://mycloud-ca320.web.app/#/
 ## Google Maps Platform での APIの設定
 (Flutter アプリ内で Google マップを使用するには、[Google Maps Platform](https://cloud.google.com/maps-platform/?hl=ja) で API プロジェクトを設定する必要があります。
 [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/get-api-key?hl=ja)の手順に従いましょう。
